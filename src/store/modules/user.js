@@ -1,5 +1,5 @@
-import { login } from 'src/api/login'
-import { setToken, getToken } from 'src/utils/auth'
+import { login } from '@/api/login.js'
+import { setToken, getToken } from '@/utils/auth.js'
 
 const user = {
   // 全局state对象,用于保存所有组件的公共数据
