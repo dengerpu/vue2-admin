@@ -11,6 +11,15 @@ function resolve (dir) {
 }
 
 module.exports = defineConfig({
+  devServer: {
+    proxy: {
+      '/dev-api': { // 匹配所有以/dev-api开头的请求路径
+        target: 'http://localhost:8000', // 代理目标的基础路径
+        changeOrigin: true,
+        pathRewrite: { '^/dev-api': '' }
+      }
+    }
+  },
   transpileDependencies: true,
   configureWebpack: {
     name: name,
