@@ -17,6 +17,7 @@ service.interceptors.request.use(
       // 每次请求将token携带过去
       config.headers.Authorization = getToken()
     }
+    return config
   },
   error => {
     console.log(error)
@@ -28,7 +29,6 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-
     if (res.code !== 200) {
       Message({
         message: res.message || 'Error',

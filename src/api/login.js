@@ -8,15 +8,13 @@ import request from '@/utils/request.js'
  * @param uuid
  * @returns {*}
  */
-export function login (username, password, code, uuid) {
+export function login (username, password) {
   return request({
     url: '/login',
     method: 'post',
     data: {
       username,
-      password,
-      code,
-      uuid
+      password
     }
   })
 }

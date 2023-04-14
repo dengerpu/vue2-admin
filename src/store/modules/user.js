@@ -23,12 +23,12 @@ const user = {
     Login ({ commit }, userInfo) {
       const remeberMe = userInfo.remeberMe
       return new Promise((resolve, reject) => {
-        login(userInfo.username, userInfo.password, userInfo.code, userInfo.uuid).then(res => {
+        login(userInfo.username, userInfo.password).then(res => {
           // 将token信息保存到cookie中
-          setToken(res.token, remeberMe)
+          setToken(res.data.token, remeberMe)
           // 将token存储到vueX中
-          commit('SET_TOKEN', res.token)
-          resolve()
+          commit('SET_TOKEN', res.data.token)
+          resolve(res)
         }).catch(error => {
           reject(error)
         })
