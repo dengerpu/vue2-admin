@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-row class="login-container-header">
       <div class="login-container-header-logo"></div>
-      <div class="login-container-header-title">{{global.title}}</div>
+      <div class="login-container-header-title">{{globalInfo.title + $store.getters.token}}</div>
     </el-row>
     <el-row class="login-container-center">
       <el-col :xs="0" :sm="13" :md="13" :lg="13" :xl="13">
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import global from '../../settings.js'
+import globalInfo from '@/settings.js'
 import { Message } from 'element-ui'
 
 export default {
@@ -54,7 +54,7 @@ export default {
   props: {},
   data () {
     return {
-      global,
+      globalInfo,
       userInfo: {
         username: 'admin',
         password: '123456',

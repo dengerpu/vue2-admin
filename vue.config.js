@@ -30,9 +30,42 @@ module.exports = defineConfig({
       }
     }
   }
+  // 全局 sass的配置
+  // chainWebpack (config) {
+  //   globalSass(config)
+  // }
+  // pluginOptions: {
+  //   'style-resources-loader': {
+  //     preProcessor: 'scss',
+  //     patterns: [
+  //       path.resolve('src/styles/variables.scss')
+  //     ]
+  //   }
+  // }
 })
 
-// 也可以不适用defineConfig
+/**
+ * 注意Dependencies需要引入
+ * "sass": "^1.32.7",
+ *"sass-loader": "^12.0.0",
+ *"sass-resources-loader": "^2.2.5"
+ * 全局变量的Sass引方法，值得收藏
+ * @param config  chainWebpack(config) 中来的一个配置
+ */
+const globalSass = config => {
+  const oneOfsMap = config.module.rule('scss').oneOfs.store
+  oneOfsMap.forEach((item) => {
+    item
+      .use('sass-resources-loader')
+      .loader('sass-resources-loader')
+      .options({
+        resources: './src/styles/variables.scss'
+      })
+      .end()
+  })
+}
+
+// 也可以不使用defineConfig
 // module.exports = {
 //   // 选项..
 // }
