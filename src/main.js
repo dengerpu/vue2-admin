@@ -3,7 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './plugins/element.js'
-import './assets/css/global.css'
+import './styles/index.scss'
+
+import './icons' // 引入icons(全局注册SvgIcon和svg)
 
 Vue.config.productionTip = false
 

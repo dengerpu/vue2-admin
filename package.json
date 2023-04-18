@@ -12,9 +12,11 @@
     "core-js": "^3.8.3",
     "element-ui": "^2.4.5",
     "js-cookie": "^3.0.1",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "sass": "^1.60.0",
     "sass-loader": "^13.2.2",
     "sass-resources-loader": "^2.2.5",
+    "svg-sprite-loader": "^6.0.11",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
@@ -34,6 +36,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^8.0.3",
+    "mockjs": "^1.1.0",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.14"
   }
