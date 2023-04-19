@@ -26,7 +26,6 @@ export default {
       return isExternal(this.iconClass)
     },
     iconName () {
-      console.log(this.iconClass)
       return `#icon-${this.iconClass}`
     },
     svgClass () {
