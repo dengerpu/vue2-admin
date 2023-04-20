@@ -18,14 +18,18 @@
             <div class="logo">
               <img src="../../assets/logo.png" alt="">
             </div>
-            <el-form :model="userInfo" label-width="60px" size="mini">
-              <el-form-item label="用户名">
+            <el-form :model="userInfo" ref="loginForm" label-width="80px" size="mini" :rules="loginRules">
+              <el-form-item label="用户名" prop="username">
                 <el-input v-model="userInfo.username" prefix-icon="el-icon-user-solid"></el-input>
               </el-form-item>
-              <el-form-item label="密码">
-                <el-input v-model="userInfo.password" prefix-icon="el-icon-search"></el-input>
+              <el-form-item label="密码" prop="password">
+                <el-input v-model="userInfo.password">
+                  <i slot="prefix">
+                    <svg-icon icon-class="password"></svg-icon>
+                  </i>
+                </el-input>
               </el-form-item>
-              <el-form-item label="验证码">
+              <el-form-item label="验证码" prop="code">
                 <el-input v-model="userInfo.code"></el-input>
               </el-form-item>
             </el-form>
@@ -38,7 +42,7 @@
       </el-col>
     </el-row>
     <el-row class="login-container-footer">
-      <div class="login-container-footer-info">本网站由{{global.title}}提供技术支持</div>
+      <div class="login-container-footer-info">本网站由{{globalInfo.title}}提供技术支持</div>
     </el-row>
   </div>
 </template>
@@ -53,6 +57,14 @@ export default {
   components: {},
   props: {},
   data () {
+    var checkCode = (rule, value, callback) => {
+      const pattern = /\d{6}/
+      if (!pattern.test(value) || value.length !== 6) {
+        callback(new Error('验证码不合法'))
+      } else {
+        callback()
+      }
+    }
     return {
       globalInfo,
       userInfo: {
@@ -60,16 +72,35 @@ export default {
         password: '123456',
         code: '',
         remeberMe: true
+      },
+      loginRules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 5, max: 15, message: '长度在 5 到 15 个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
+        ],
+        code: [
+          { validator: checkCode, trigger: 'blur' }
+        ]
       }
     }
   },
   methods: {
     // 登陆事件
     handleLogin () {
-      this.$store.dispatch('Login', this.userInfo).then((res) => {
-        console.log(res)
-      }).catch((err) => {
-        Message.error(err)
+      this.$refs.loginForm.validate((valid) => {
+        if (valid) {
+          this.$store.dispatch('Login', this.userInfo).then((res) => {
+            console.log(res)
+          }).catch((err) => {
+            Message.error(err)
+          })
+        } else {
+          Message.error('您输入的信息有误')
+        }
       })
     }
   }
@@ -80,13 +111,14 @@ export default {
 .login-container {
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   background-color: #96B4D4;
   overflow: hidden;
   .login-container-header {
-    height: 20%;
+    height: 15%;
   }
   .login-container-center {
-    height: 65%;
+    height: 70%;
     .login-container-center-left {
       width: 80%;
       img {
