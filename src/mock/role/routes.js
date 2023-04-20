@@ -114,14 +114,14 @@ const asyncRoutes = [
   },
 
   {
-    path: '/icon',
+    path: 'https://www.baidu.com',
     component: 'layout/Layout',
     children: [
       {
         path: 'index',
         component: 'views/icons/index',
         name: 'Icons',
-        meta: { title: 'Icons', icon: 'icon', noCache: true }
+        meta: { title: 'Icons', icon: 'el-icon-platform-eleme', noCache: true }
       }
     ]
   },
