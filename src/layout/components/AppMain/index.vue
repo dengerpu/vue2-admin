@@ -1,18 +1,12 @@
 <template>
-  <div>
-    AppMain页面
+  <div class="app-main">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppMain',
-  components: {},
-  props: {},
-  data () {
-    return {}
-  },
-  methods: {}
+  name: 'AppMain'
 }
 </script>
 
