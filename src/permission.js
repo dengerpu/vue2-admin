@@ -5,13 +5,21 @@ import store from './store/index'
 const whiteList = ['/login']
 
 // 路由前置导航守卫
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   console.log(store.getters.token)
   // 存在token,进入主页
   if (store.getters.token) {
     if (to.path === '/login') {
       next('/')
     } else {
+      console.log('存在token', store.getters.userInfo)
+      console.log(!store.getters.userInfo)
+      // 判断用户资料是否获取
+      // 若不存在用户信息，则需要获取用户信息
+      if (!store.getters.userInfo) {
+        // 触发获取用户信息的Action
+        await store.dispatch('getUserInfo')
+      }
       next()
     }
   } else {

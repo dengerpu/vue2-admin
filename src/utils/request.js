@@ -8,13 +8,15 @@ const service = axios.create({
   timeout: 5000
 })
 
+const TOKEN = 'token'
+
 // 请求拦截
 service.interceptors.request.use(
   config => {
     // TODO 这里是用store.getters.token 还是 getToken()
     if (store.getters.token) {
       // 每次请求将token携带过去
-      config.headers.Authorization = store.getters.token
+      config.headers[TOKEN] = store.getters.token
     }
     return config
   },
