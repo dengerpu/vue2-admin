@@ -102,7 +102,7 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.$store.dispatch('Login', this.userInfo).then((res) => {
-            console.log(res)
+            this.$router.push('/')
           }).catch((err) => {
             Message.error(err)
           })

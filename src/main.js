@@ -6,6 +6,8 @@ import './styles/index.scss'
 import './icons'
 import ElementUI from 'element-ui' // 引入icons(全局注册SvgIcon和svg)
 
+import './permission'
+
 require('./mock/index')
 
 Vue.use(ElementUI)

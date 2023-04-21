@@ -4,7 +4,7 @@ import { getItem, setItem } from '@/utils/storage'
 const user = {
   // 全局state对象,用于保存所有组件的公共数据
   state: {
-    token: getItem('token')
+    token: getItem('token') || ''
   },
   // 唯——个可以修改state值的方法(同步执行)
   mutations: {
