@@ -19,17 +19,24 @@
               <img src="../../assets/logo.png" alt="">
             </div>
             <el-form :model="userInfo" ref="loginForm" label-width="80px" size="mini" :rules="loginRules">
-              <el-form-item label="用户名" prop="username">
-                <el-input v-model="userInfo.username" prefix-icon="el-icon-user-solid"></el-input>
-              </el-form-item>
-              <el-form-item label="密码" prop="password">
-                <el-input v-model="userInfo.password">
+              <el-form-item label="用户名" prop="username" class="input_label">
+                <el-input v-model="userInfo.username">
                   <i slot="prefix">
-                    <svg-icon icon-class="password"></svg-icon>
+                    <svg-icon icon-class="user"></svg-icon>
                   </i>
                 </el-input>
               </el-form-item>
-              <el-form-item label="验证码" prop="code">
+              <el-form-item label="密码" prop="password" class="input_label">
+                <el-input v-model="userInfo.password" :type="passwordType">
+                  <i slot="prefix">
+                    <svg-icon icon-class="password"></svg-icon>
+                  </i>
+                  <i slot="suffix" class="password_eye">
+                    <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" @click="onChangePwdType"></svg-icon>
+                  </i>
+                </el-input>
+              </el-form-item>
+              <el-form-item label="验证码" prop="code" class="input_label">
                 <el-input v-model="userInfo.code"></el-input>
               </el-form-item>
             </el-form>
@@ -67,6 +74,7 @@ export default {
     }
     return {
       globalInfo,
+      passwordType: 'password',
       userInfo: {
         username: 'admin',
         password: '123456',
@@ -102,6 +110,13 @@ export default {
           Message.error('您输入的信息有误')
         }
       })
+    },
+    onChangePwdType () {
+      if (this.passwordType === 'password') {
+        this.passwordType = 'text'
+      } else {
+        this.passwordType = 'password'
+      }
     }
   }
 }
@@ -130,7 +145,7 @@ export default {
       .login-box-card {
         padding: 20px;
         //border: 1px solid #eee;
-        background-color: #4389BC;
+        background-color: #ffffff;
         width: 50%;
         position: relative;
         .logo {
@@ -170,5 +185,21 @@ export default {
 }
 .center {
   margin: 0 auto;
+}
+.password_eye {
+  cursor: pointer;
+}
+.input_label {
+  user-select: none;
+}
+</style>
+<style lang="scss">
+.login-container {
+  .el-input__prefix {
+    left: 10px;
+  }
+  .el-input__suffix {
+    right: 10px;
+  }
 }
 </style>
