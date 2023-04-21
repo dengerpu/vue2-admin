@@ -64,7 +64,7 @@ export default {
   components: {},
   props: {},
   data () {
-    var checkCode = (rule, value, callback) => {
+    const checkCode = (rule, value, callback) => {
       const pattern = /\d{6}/
       if (!pattern.test(value) || value.length !== 6) {
         callback(new Error('验证码不合法'))

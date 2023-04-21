@@ -3,9 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './styles/index.scss'
-import './icons' // 引入icons(全局注册SvgIcon和svg)
+import './icons'
+import ElementUI from 'element-ui' // 引入icons(全局注册SvgIcon和svg)
 
-import ElementUI from 'element-ui'
+require('./mock/index')
 
 Vue.use(ElementUI)
 

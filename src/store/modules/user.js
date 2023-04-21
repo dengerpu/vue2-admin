@@ -1,10 +1,10 @@
 import { login } from '@/api/login.js'
-import { setToken, getToken } from '@/utils/auth.js'
+import { getItem, setItem } from '@/utils/storage'
 
 const user = {
   // 全局state对象,用于保存所有组件的公共数据
   state: {
-    token: getToken()
+    token: getItem('token')
   },
   // 唯——个可以修改state值的方法(同步执行)
   mutations: {
@@ -21,11 +21,12 @@ const user = {
 
     // 登陆
     Login ({ commit }, userInfo) {
-      const remeberMe = userInfo.remeberMe
+      // const remeberMe = userInfo.remeberMe
       return new Promise((resolve, reject) => {
         login(userInfo.username, userInfo.password).then(res => {
-          // 将token信息保存到cookie中
-          setToken(res.data.token, remeberMe)
+          // 将token信息保存到localstorage中
+          // setToken(res.data.token, remeberMe)
+          setItem('token', res.data.token)
           // 将token存储到vueX中
           commit('SET_TOKEN', res.data.token)
           resolve(res)

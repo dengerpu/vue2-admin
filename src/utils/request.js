@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store/index.js'
-import { getToken } from '@/utils/auth.js'
 
 // 创建axios实例
 const service = axios.create({
@@ -15,7 +14,7 @@ service.interceptors.request.use(
     // TODO 这里是用store.getters.token 还是 getToken()
     if (store.getters.token) {
       // 每次请求将token携带过去
-      config.headers.Authorization = getToken()
+      config.headers.Authorization = store.getters.token
     }
     return config
   },
