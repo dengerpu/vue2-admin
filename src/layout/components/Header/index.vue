@@ -8,13 +8,15 @@
           <i  class="avatar-icon el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
+          <el-dropdown-item>
               <router-link to="/">
               <el-dropdown-item> 首页 </el-dropdown-item>
-            </router-link>
+              </router-link>
           </el-dropdown-item>
           <el-dropdown-item>个人中心</el-dropdown-item>
-          <el-dropdown-item divided>退出登陆</el-dropdown-item>
+          <el-dropdown-item divided >
+            <span @click="handleLogout">退出登陆</span>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -22,6 +24,7 @@
 </template>
 <script>
 import globalInfo from '@/settings.js'
+import { Message } from 'element-ui'
 export default {
   name: 'DepHeader',
   components: {},
@@ -31,7 +34,17 @@ export default {
       globalInfo
     }
   },
-  methods: {}
+  methods: {
+    // 退出登陆
+    handleLogout () {
+      debugger
+      this.$store.dispatch('LOGOUT').then(res => {
+        this.$router.push('/login')
+      }).catch(err => {
+        Message.error(err)
+      })
+    }
+  }
 }
 </script>
 

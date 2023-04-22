@@ -1,6 +1,5 @@
-import { login } from '@/api/login.js'
-import { getUserInfo } from '@/api/user'
-import { getItem, setItem } from '@/utils/storage'
+import { getUserInfo, login, logout } from '@/api/user'
+import { getItem, removeAll, setItem } from '@/utils/storage'
 
 const user = {
   // 全局state对象,用于保存所有组件的公共数据
@@ -43,12 +42,25 @@ const user = {
       })
     },
     // 获取用户信息
-    async getUserInfo ({ commit }) {
+    async GET_USERINFO ({ commit }) {
       console.log('Action获取用户信息')
       const res = await getUserInfo()
       commit('SET_USERINFO', res.data)
       console.log(res)
       return res
+    },
+    // 退出登陆
+    LOGOUT (context) {
+      return new Promise((resolve, reject) => {
+        logout().then(res => {
+          context.commit('SET_TOKEN', '')
+          context.commit('SET_USERINFO', null)
+          removeAll()
+          resolve(res)
+        }).catch(err => {
+          reject(err)
+        })
+      })
     }
   }
 }
