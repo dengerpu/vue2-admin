@@ -1,6 +1,8 @@
 <template>
   <el-container class="layout-container">
-    <el-header :height="variables.headerHeight">{{ globalInfo.title}}</el-header>
+    <el-header :height="variables.headerHeight">
+      <dep-header></dep-header>
+    </el-header>
     <el-container class="app-wrapper">
       <!--左侧菜单-->
       <el-aside :width="variables.sideBarWidth">
@@ -17,15 +19,16 @@
 </template>
 
 <script>
-import globalInfo from '@/settings.js'
 import Sidebar from './components/Sidebar'
 import Navbar from '@/layout/components/Navbar'
 import AppMain from '@/layout/components/AppMain'
+import DepHeader from '@/layout/components/Header'
 // import variables from '@/styles/variables.scss'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'layout',
   components: {
+    DepHeader,
     AppMain,
     Navbar,
     Sidebar
@@ -33,10 +36,9 @@ export default {
   props: {},
   data () {
     return {
-      globalInfo,
       variables: {
         sideBarWidth: '210px',
-        headerHeight: '60px'
+        headerHeight: '50px'
       }
     }
   },
@@ -66,6 +68,14 @@ export default {
     right: 0;
     z-index: 9;
     width: calc(100% - #{$sideBarWidth});
+  }
+}
+</style>
+<style lang="scss">
+.layout-container {
+  .el-header {
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   }
 }
 </style>
