@@ -22,7 +22,15 @@ module.exports = {
   /**
    * @description token key
    */
-  TokenKey: 'DEP-TOEKN',
+  TokenKey: 'token',
+  /**
+   * token时间戳
+   */
+  TIME_STAMP: 'timeStamp',
+  /**
+   * token过期时间 2小时
+   */
+  TOKEN_TIMEOUT_VALUE: 10 * 1000,
   /**
    * @description 请求超时时间，毫秒（默认2分钟）
    */

@@ -1,5 +1,6 @@
 import { getUserInfo, login, logout } from '@/api/user'
 import { getItem, removeAll, setItem } from '@/utils/storage'
+import { setTimeStamp } from '@/utils/auth'
 
 const user = {
   // 全局state对象,用于保存所有组件的公共数据
@@ -35,6 +36,8 @@ const user = {
           setItem('token', res.data.token)
           // 将token存储到vueX中
           commit('SET_TOKEN', res.data.token)
+          // 保存登陆时间
+          setTimeStamp(Date.now())
           resolve(res)
         }).catch(error => {
           reject(error)
