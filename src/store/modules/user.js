@@ -1,12 +1,13 @@
-import { getUserInfo, login, logout } from '@/api/user'
+import { getUserInfo, login } from '@/api/user'
 import { getItem, removeAll, setItem } from '@/utils/storage'
 import { setTimeStamp } from '@/utils/auth'
+import router from '@/router'
 
 const user = {
   // 全局state对象,用于保存所有组件的公共数据
   state: {
     token: getItem('token') || '',
-    userInfo: null
+    userInfo: getItem('userInfo') || null
   },
   // 唯——个可以修改state值的方法(同步执行)
   mutations: {
@@ -46,23 +47,20 @@ const user = {
     },
     // 获取用户信息
     async GET_USERINFO ({ commit }) {
-      console.log('Action获取用户信息')
       const res = await getUserInfo()
-      commit('SET_USERINFO', res.data)
-      console.log(res)
-      return res
+      if (res && res.code === 200) {
+        commit('SET_USERINFO', res.data)
+        setItem('userInfo', JSON.stringify(res.data))
+        return res
+      }
     },
     // 退出登陆
     LOGOUT (context) {
       return new Promise((resolve, reject) => {
-        logout().then(res => {
-          context.commit('SET_TOKEN', '')
-          context.commit('SET_USERINFO', null)
-          removeAll()
-          resolve(res)
-        }).catch(err => {
-          reject(err)
-        })
+        context.commit('SET_TOKEN', '')
+        context.commit('SET_USERINFO', null)
+        removeAll()
+        router.push('/login')
       })
     }
   }

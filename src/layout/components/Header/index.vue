@@ -1,6 +1,8 @@
 <template>
   <div class="header-container">
-    <div class="header-left fl">{{globalInfo.title}}</div>
+    <div class="header-left fl">
+      <span>{{globalInfo.title}}</span>
+    </div>
     <div class="header-right fr">
       <el-dropdown>
         <div class="avatar-container">
@@ -24,7 +26,6 @@
 </template>
 <script>
 import globalInfo from '@/settings.js'
-import { Message } from 'element-ui'
 export default {
   name: 'DepHeader',
   components: {},
@@ -37,12 +38,7 @@ export default {
   methods: {
     // 退出登陆
     handleLogout () {
-      debugger
-      this.$store.dispatch('LOGOUT').then(res => {
-        this.$router.push('/login')
-      }).catch(err => {
-        Message.error(err)
-      })
+      this.$store.dispatch('LOGOUT')
     }
   }
 }
@@ -53,6 +49,13 @@ export default {
   height: 100%;
   overflow: hidden;
   position: relative;
+  .header-left {
+    display: flex;
+    align-items: center;
+    span {
+      display: inline-block;
+    }
+  }
   .header-right {
     height: 100%;
     display: flex;

@@ -20,7 +20,7 @@ export function login (username, password) {
 }
 
 /**
- * 退出登陆
+ * 退出登陆(退出登陆时不需要调用接口)
  * @returns {*}
  */
 export function logout () {
