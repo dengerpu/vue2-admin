@@ -1,7 +1,9 @@
 <template>
   <div class="header-container">
     <div class="header-left fl">
-      <span>{{globalInfo.title}}</span>
+      <div class="logo">
+        <span class="logo-title">{{globalInfo.title}}</span>
+      </div>
     </div>
     <div class="header-right fr">
       <el-dropdown>
@@ -45,15 +47,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/variables.scss";
 .header-container {
-  height: 100%;
+  height: #{$headerHeight};
   overflow: hidden;
   position: relative;
   .header-left {
-    display: flex;
-    align-items: center;
-    span {
-      display: inline-block;
+    line-height: #{$headerHeight};
+    .logo {
+      font-weight: 700;
+      font-size: 25px;
+      color: #{$headerTitleColor};
     }
   }
   .header-right {
@@ -70,6 +74,7 @@ export default {
         position: absolute;
         right: -8px;
         bottom: 10px;
+        color: #{$headerTitleColor};
       }
     }
     .avatar-container:hover {

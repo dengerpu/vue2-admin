@@ -30,7 +30,7 @@ module.exports = {
   /**
    * token过期时间 2小时
    */
-  TOKEN_TIMEOUT_VALUE: 2 * 3600 * 1000,
+  TOKEN_TIMEOUT_VALUE: 200 * 3600 * 1000,
   /**
    * @description 请求超时时间，毫秒（默认2分钟）
    */
