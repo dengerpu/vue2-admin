@@ -4,6 +4,7 @@ import { setTimeStamp } from '@/utils/auth'
 import router from '@/router'
 
 const user = {
+  namespaced: true,
   // 全局state对象,用于保存所有组件的公共数据
   state: {
     token: getItem('token') || '',

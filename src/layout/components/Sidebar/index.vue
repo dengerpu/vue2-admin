@@ -2,8 +2,7 @@
   <div class="sidebar">
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        :collapse="isCollapse"
-        class="el-menu-vertical-demo"
+        :collapse="!$store.getters.sidebar.opened"
         :default-active="activeMenu"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
@@ -48,3 +47,5 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+</style>

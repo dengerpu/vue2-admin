@@ -20,10 +20,13 @@ $subMenuBg:#1f2d3d;
 $subMenuHover:#001528;
 
 $sideBarWidth: 210px;
+$hideSideBarWidth: 50px;
 
 $headerHeight: 50px;
 $headerBg: #2A94DE;
 $headerTitleColor: #fff;
+
+$navbarHeight: 36px;
 
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
@@ -39,4 +42,5 @@ $headerTitleColor: #fff;
   headerHeight: $headerHeight;
   headerBg: $headerBg;
   headerTitleColor: $headerTitleColor;
+  navbarHeight: $navbarHeight;
 }

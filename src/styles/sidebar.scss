@@ -6,10 +6,7 @@
 
   .sidebar-container {
     transition: width 0.28s;
-    width: $sideBarWidth !important;
     height: 100%;
-    position: fixed;
-    top: $headerHeight;
     left: 0;
     z-index: 1001;
     overflow: hidden;

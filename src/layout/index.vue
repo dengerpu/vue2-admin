@@ -5,8 +5,8 @@
     </el-header>
     <el-container class="app-wrapper">
       <!--左侧菜单-->
-      <el-aside :width="variables.sideBarWidth">
-        <Sidebar class="sidebar-container"></Sidebar>
+      <el-aside class="sidebar-container" :width="$store.getters.sidebar.opened ? variables.sideBarWidth : variables.hideSideBarWidth">
+        <Sidebar></Sidebar>
       </el-aside>
       <el-main class="main-container">
         <!-- 顶部的 navbar -->
@@ -38,6 +38,7 @@ export default {
     return {
       variables: {
         sideBarWidth: '210px',
+        hideSideBarWidth: '50px',
         headerHeight: '50px'
       }
     }
@@ -61,13 +62,12 @@ export default {
     position: relative;
     height: calc(100% - #{$headerHeight});
     width: 100%;
-  }
-  .navbar-container {
-    position: fixed;
-    top: #{$headerHeight};
-    right: 0;
-    z-index: 9;
-    width: calc(100% - #{$sideBarWidth});
+    .navbar-container {
+      width: 100%;
+      height: #{$navbarHeight};
+      line-height: #{$navbarHeight};
+      box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    }
   }
 }
 </style>
@@ -77,6 +77,9 @@ export default {
   .el-header {
     background: #{$headerBg};
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  }
+  .el-main {
+    padding: 0px;
   }
 }
 </style>
