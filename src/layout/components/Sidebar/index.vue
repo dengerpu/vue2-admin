@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="sidebar">
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
+        :collapse="isCollapse"
         class="el-menu-vertical-demo"
         :default-active="activeMenu"
         :background-color="variables.menuBg"

@@ -28,7 +28,7 @@ const user = {
     // 这里统一使用解构赋值
 
     // 登陆
-    Login ({ commit }, userInfo) {
+    login ({ commit }, userInfo) {
       // const remeberMe = userInfo.remeberMe
       return new Promise((resolve, reject) => {
         login(userInfo.username, userInfo.password).then(res => {
@@ -46,7 +46,7 @@ const user = {
       })
     },
     // 获取用户信息
-    async GET_USERINFO ({ commit }) {
+    async getUserInfo ({ commit }) {
       const res = await getUserInfo()
       if (res && res.code === 200) {
         commit('SET_USERINFO', res.data)
@@ -55,7 +55,7 @@ const user = {
       }
     },
     // 退出登陆
-    LOGOUT (context) {
+    logout (context) {
       return new Promise((resolve, reject) => {
         context.commit('SET_TOKEN', '')
         context.commit('SET_USERINFO', null)
