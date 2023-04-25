@@ -1,6 +1,6 @@
 <template>
   <div>
-    仪表盘页面
+    {{ $t('navbar.dashboard') }}
   </div>
 </template>
 

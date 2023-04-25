@@ -5,6 +5,7 @@ import store from './store'
 import './styles/index.scss'
 import './icons'
 import ElementUI from 'element-ui' // 引入icons(全局注册SvgIcon和svg)
+import i18n from '@/lang' // 国际化
 
 import './permission'
 
@@ -17,5 +18,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
