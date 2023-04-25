@@ -62,6 +62,9 @@ export default {
     position: relative;
     height: calc(100% - #{$headerHeight});
     width: 100%;
+    .sidebar-container,.main-container {
+      transition: width 0.28s;
+    }
     .navbar-container {
       width: 100%;
       height: #{$navbarHeight};

@@ -2,7 +2,7 @@
   <div class="header-container">
     <div class="header-left fl">
       <div class="logo">
-        <span class="logo-title">{{globalInfo.title}}</span>
+        <h1 class="logo-title">{{globalInfo.title}}</h1>
       </div>
     </div>
     <div class="header-right fr">
@@ -55,8 +55,6 @@ export default {
   .header-left {
     line-height: #{$headerHeight};
     .logo {
-      font-weight: 700;
-      font-size: 25px;
       color: #{$headerTitleColor};
     }
   }
