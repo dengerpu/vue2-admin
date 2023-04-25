@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import pathToRegexp from 'vue-router'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -57,12 +56,6 @@ export default {
       }
       return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
     },
-    pathCompile (path) {
-      // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
-      const { params } = this.$route
-      var toPath = pathToRegexp.compile(path)
-      return toPath(params)
-    },
     handleLink (item) {
       const { redirect, path } = item
       // 避免在当前路由还重复点击报错问题
@@ -71,7 +64,7 @@ export default {
           this.$router.push(redirect)
           return
         }
-        this.$router.push(this.pathCompile(path))
+        this.$router.push(path)
       }
     }
   }
