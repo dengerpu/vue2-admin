@@ -3,6 +3,10 @@ module.exports = {
    * @description 网站标题
    */
   title: '爱写bug的小邓程序员',
+  /***
+   * @description 网站logo
+   */
+  logo: 'https://blog-1300527744.cos-website.ap-chongqing.myqcloud.com/img/icon.png',
   /**
    * @description 是否显示 tagsView
    */

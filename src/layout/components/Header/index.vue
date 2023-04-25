@@ -2,6 +2,7 @@
   <div class="header-container">
     <div class="header-left fl">
       <div class="logo">
+        <img class="logo-img" :src="globalInfo.logo" :alt="globalInfo.title">
         <h1 class="logo-title">{{globalInfo.title}}</h1>
       </div>
     </div>
@@ -55,7 +56,18 @@ export default {
   .header-left {
     line-height: #{$headerHeight};
     .logo {
+      display: flex;
+      align-items: center;
       color: #{$headerTitleColor};
+      .logo-img {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      .logo-title {
+        margin-left: 18px;
+      }
     }
   }
   .header-right {
