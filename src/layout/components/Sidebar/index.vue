@@ -14,7 +14,8 @@
 </template>
 <script>
 import SidebarItem from '@/layout/components/Sidebar/SidebarItem'
-import { routes } from '@/mock/role/index'
+import { constantRoutes, asyncRoutes } from '@/router'
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Sidebar',
@@ -33,7 +34,7 @@ export default {
   },
   data () {
     return {
-      routes,
+      routes: [],
       variables: {
         menuText: '#bfcbd9',
         menuActiveText: '#409EFF',
@@ -44,6 +45,9 @@ export default {
         subMenuHover: '#001528'
       }
     }
+  },
+  created () {
+    this.routes = [...constantRoutes, ...asyncRoutes]
   }
 }
 </script>
