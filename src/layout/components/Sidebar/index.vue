@@ -1,5 +1,6 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" :style="{height: sidebarHeight}">
+    <sidebar-logo class="has-logo" v-if="hasLogo" :is-menu="true" :collapse="!$store.getters.sidebar.opened"></sidebar-logo>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :collapse="!$store.getters.sidebar.opened"
@@ -15,11 +16,12 @@
 <script>
 import SidebarItem from '@/layout/components/Sidebar/SidebarItem'
 import { constantRoutes, asyncRoutes } from '@/router'
+import SidebarLogo from '@/layout/components/Sidebar/Logo'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Sidebar',
-  components: { SidebarItem },
+  components: { SidebarLogo, SidebarItem },
   computed: {
     // eslint-disable-next-line vue/return-in-computed-property
     // 获取当前活跃的菜单，实现菜单高亮
@@ -30,11 +32,15 @@ export default {
         return meta.activeMenu
       }
       return path
+    },
+    sidebarHeight () {
+      return this.hasLogo ? 'calc(100% - 50px)' : '100%'
     }
   },
   data () {
     return {
       routes: [],
+      hasLogo: true,
       variables: {
         menuText: '#bfcbd9',
         menuActiveText: '#409EFF',
