@@ -1,3 +1,4 @@
+import global from '@/settings.js'
 export default {
   route: {
     dashboard: '首页',
@@ -63,6 +64,9 @@ export default {
     i18n: '国际化',
     externalLink: '外链',
     profile: '个人中心'
+  },
+  sidebar: {
+    menu: '菜单'
   },
   navbar: {
     dashboard: '首页',
@@ -171,5 +175,11 @@ export default {
     tagsView: '开启 Tags-View',
     fixedHeader: '固定 Header',
     sidebarLogo: '侧边栏 Logo'
+  },
+  globalInfo: {
+    title: global.zhTitle
+  },
+  toast: {
+    switchLangSuccess: '切换语言成功'
   }
 }

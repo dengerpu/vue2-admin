@@ -1,3 +1,5 @@
+import global from '@/settings'
+
 export default {
   route: {
     dashboard: 'Dashboard',
@@ -63,6 +65,9 @@ export default {
     i18n: 'I18n',
     externalLink: 'External Link',
     profile: 'Profile'
+  },
+  sidebar: {
+    menu: 'menu'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -171,5 +176,11 @@ export default {
     tagsView: 'Open Tags-View',
     fixedHeader: 'Fixed Header',
     sidebarLogo: 'Sidebar Logo'
+  },
+  globalInfo: {
+    title: global.enTitle
+  },
+  toast: {
+    switchLangSuccess: 'Switch Language Success'
   }
 }

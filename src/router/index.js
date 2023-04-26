@@ -278,7 +278,7 @@ export const asyncRoutes = [
         path: 'export-selected-excel',
         component: () => import('@/views/excel/select-excel'),
         name: 'SelectExcel',
-        meta: { title: 'Export Selected' }
+        meta: { title: 'Select Excel' }
       },
       {
         path: 'export-merge-header',

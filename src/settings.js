@@ -2,7 +2,8 @@ module.exports = {
   /**
    * @description 网站标题
    */
-  title: '爱写bug的小邓程序员',
+  zhTitle: '爱写bug的小邓程序员',
+  enTitle: 'Vue-admin',
   /***
    * @description 网站logo
    */

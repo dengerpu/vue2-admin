@@ -1,14 +1,14 @@
 <template>
   <div class="sidebar-logo-container">
     <div v-if="isMenu" class="menu-nav" @click="toggleSideBar">
-      <span class="menu-nav-title" v-if="this.$store.getters.sidebar.opened">菜单</span>
+      <span class="menu-nav-title" v-if="this.$store.getters.sidebar.opened">{{ $t('sidebar.menu') }}</span>
       <div class="menu-nav-icon">
         <i :class="this.$store.getters.sidebar.opened ? 'el-icon-d-arrow-left' : 'el-icon-d-arrow-right'"></i>
       </div>
     </div>
     <div class="sidebar-logo-box" v-else>
-      <img class="sidebar-logo-img" :src="globalInfo.logo" :alt="globalInfo.title">
-      <h1 class="sidebar-logo-title">{{globalInfo.title}}</h1>
+      <img class="sidebar-logo-img" :src="globalInfo.logo" :alt="$t('globalInfo.title')">
+      <h1 class="sidebar-logo-title">{{$t('globalInfo.title')}}</h1>
     </div>
   </div>
 </template>

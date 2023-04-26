@@ -2,7 +2,8 @@
 const getters = {
   token: state => state.user.token,
   userInfo: state => state.user.userInfo,
-  sidebar: state => state.app.sidebar
+  sidebar: state => state.app.sidebar,
+  language: state => state.app.language
 }
 // 用上面简写的形式
 // const getters = {

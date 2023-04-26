@@ -10,14 +10,14 @@
           <!--  <i :class="onlyOneChild.meta.icon"></i>-->
           <!--  <span slot="title">{{ onlyOneChild.meta.title }}</span>-->
           <!--</template>-->
-          <Item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="onlyOneChild.meta.title"></Item>
+          <Item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="generateTitle(onlyOneChild.meta.title)"></Item>
         </el-menu-item>
       </dep-link>
     </template>
      <!--多级菜单-->
     <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <Item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title"></Item>
+        <Item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="generateTitle(item.meta.title)"></Item>
       </template>
       <!--递归调用-->
       <sidebar-item v-for="child in item.children" :key="child.path" :item="child" :base-path="resolvePath(child.path)"></sidebar-item>
@@ -28,6 +28,7 @@
 <script>
 import path from 'path'
 import { isExternal } from '@/utils/validate'
+import { generateTitle } from '@/utils/i18n'
 import depLink from './Link'
 import Item from '@/layout/components/Sidebar/Item'
 export default {
@@ -49,6 +50,7 @@ export default {
     }
   },
   methods: {
+    generateTitle,
     // 判断是否只有一个需要显示的路由
     hasOneShowingChild (children = [], parent) {
       const showingChildren = children.filter(item => {

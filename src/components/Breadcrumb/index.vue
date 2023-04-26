@@ -3,16 +3,16 @@
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in breadcrumbData" :key="item.path">
         <!--不可点击跳转-->
-        <span v-if="item.redirect==='noRedirect'||index==breadcrumbData.length-1" class="no-redirect">{{ item.meta.title }}</span>
+        <span v-if="item.redirect==='noRedirect'||index==breadcrumbData.length-1" class="no-redirect">{{ generateTitle(item.meta.title) }}</span>
         <!--可点击跳转-->
-        <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
+        <a v-else @click.prevent="handleLink(item)">{{ generateTitle(item.meta.title) }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
 </template>
 
 <script>
-
+import { generateTitle } from '@/utils/i18n'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Breadcrumb',
@@ -35,6 +35,7 @@ export default {
     this.getBreadcrumbData()
   },
   methods: {
+    generateTitle,
     // 获取面包屑数据
     getBreadcrumbData () {
       let matched = this.$route.matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)

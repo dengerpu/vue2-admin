@@ -2,11 +2,12 @@
   <div class="header-container">
     <div class="header-left fl">
       <div class="logo">
-        <img class="logo-img" :src="globalInfo.logo" :alt="globalInfo.title">
-        <h1 class="logo-title">{{globalInfo.title}}</h1>
+        <img class="logo-img" :src="globalInfo.logo" :alt="$t('globalInfo.title')">
+        <h1 class="logo-title">{{$t('globalInfo.title')}}</h1>
       </div>
     </div>
     <div class="header-right fr">
+      <lang-select></lang-select>
       <el-dropdown>
         <div class="avatar-container">
           <el-avatar shape="square" :size="40" src="https://blog-1300527744.cos-website.ap-chongqing.myqcloud.com/img/icon.png"></el-avatar>
@@ -15,12 +16,12 @@
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
               <router-link to="/">
-              <el-dropdown-item> 首页 </el-dropdown-item>
+              <el-dropdown-item> {{ $t('navbar.dashboard') }} </el-dropdown-item>
               </router-link>
           </el-dropdown-item>
-          <el-dropdown-item>个人中心</el-dropdown-item>
+          <el-dropdown-item>{{$t('navbar.profile')}}</el-dropdown-item>
           <el-dropdown-item divided >
-            <span @click="handleLogout">退出登陆</span>
+            <span @click="handleLogout">{{$t('navbar.logOut')}}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -29,9 +30,10 @@
 </template>
 <script>
 import globalInfo from '@/settings.js'
+import LangSelect from '@/components/LangSelect'
 export default {
   name: 'DepHeader',
-  components: {},
+  components: { LangSelect },
   props: {},
   data () {
     return {

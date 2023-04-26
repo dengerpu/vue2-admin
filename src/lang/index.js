@@ -1,5 +1,6 @@
 import VueI18n from 'vue-i18n'
 import Vue from 'vue'
+import store from '@/store'
 
 import elementEnlocale from 'element-ui/lib/locale/lang/en'
 import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'// element-ui lang
@@ -19,7 +20,7 @@ const messages = {
   }
 }
 
-const locale = 'zh'
+const locale = store.getters.language
 
 const i18n = new VueI18n({
   // 全局注入 $t 函数
