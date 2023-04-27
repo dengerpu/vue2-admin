@@ -1,7 +1,7 @@
 <template>
   <el-dropdown @command="handleSetLanguage" class="langSelect-container">
     <div>
-      <el-tooltip content="国际化">
+      <el-tooltip :content="this.$t('navbar.i18n')" :effect="effect">
         <svg-icon class="langSelect-icon" icon-class="language" />
       </el-tooltip>
     </div>
@@ -18,7 +18,15 @@ import { Message } from 'element-ui'
 export default {
   name: 'LangSelect',
   components: {},
-  props: {},
+  props: {
+    effect: {
+      type: String,
+      default: 'dark',
+      validator: function (value) {
+        return ['dark', 'light'].indexOf(value) !== -1
+      }
+    }
+  },
   data () {
     return {}
   },
@@ -39,6 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 .langSelect-container {
+  padding: 0 5px;
   cursor: pointer;
   .langSelect-icon {
     color: #fff;

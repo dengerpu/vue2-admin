@@ -3,7 +3,8 @@ const getters = {
   token: state => state.user.token,
   userInfo: state => state.user.userInfo,
   sidebar: state => state.app.sidebar,
-  language: state => state.app.language
+  language: state => state.app.language,
+  themeColor: state => state.theme.themeColor
 }
 // 用上面简写的形式
 // const getters = {

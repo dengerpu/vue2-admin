@@ -55,5 +55,9 @@ module.exports = {
   /**
    * 备案号
    */
-  caseNumber: ''
+  caseNumber: '',
+  /**
+   * 默认主题色
+   */
+  DEFAULT_THEME_COLOR: '#409eff'
 }

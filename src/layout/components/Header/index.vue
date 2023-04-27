@@ -7,6 +7,7 @@
       </div>
     </div>
     <div class="header-right fr">
+      <theme-picker></theme-picker>
       <lang-select></lang-select>
       <el-dropdown>
         <div class="avatar-container">
@@ -31,9 +32,10 @@
 <script>
 import globalInfo from '@/settings.js'
 import LangSelect from '@/components/LangSelect'
+import ThemePicker from '@/components/ThemePicker'
 export default {
   name: 'DepHeader',
-  components: { LangSelect },
+  components: { ThemePicker, LangSelect },
   props: {},
   data () {
     return {

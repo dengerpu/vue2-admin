@@ -74,7 +74,13 @@ export default {
     logOut: '退出登录',
     profile: '个人中心',
     theme: '换肤',
-    size: '布局大小'
+    size: '布局大小',
+    i18n: '国际化'
+  },
+  universal: {
+    tip: '提示',
+    confirm: '确定',
+    cancel: '取消'
   },
   login: {
     title: '系统登录',
@@ -159,6 +165,8 @@ export default {
     tips: '这里使用   window.print() 来实现下载pdf的功能'
   },
   theme: {
+    themeColorChange: '主题色更换',
+    themeChange: '主题更换',
     change: '换肤',
     documentation: '换肤文档',
     tips: 'Tips: 它区别于 navbar 上的 theme-pick, 是两种不同的换肤方法，各自有不同的应用场景，具体请参考文档。'

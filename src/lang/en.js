@@ -69,13 +69,19 @@ export default {
   sidebar: {
     menu: 'menu'
   },
+  universal: {
+    tip: 'tip',
+    confirm: 'confirm',
+    cancel: 'cancel'
+  },
   navbar: {
     dashboard: 'Dashboard',
     github: 'Github',
     logOut: 'Log Out',
     profile: 'Profile',
     theme: 'Theme',
-    size: 'Global Size'
+    size: 'Global Size',
+    i18n: 'internationalization'
   },
   login: {
     title: 'Login Form',
@@ -160,6 +166,8 @@ export default {
     tips: 'Here we use window.print() to implement the feature of downloading PDF.'
   },
   theme: {
+    themeColorChange: 'Theme Color Change',
+    themeChange: 'Theme Change',
     change: 'Change Theme',
     documentation: 'Theme documentation',
     tips: 'Tips: It is different from the theme-pick on the navbar is two different skinning methods, each with different application scenarios. Refer to the documentation for details.'
