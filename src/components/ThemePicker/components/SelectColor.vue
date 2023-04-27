@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
+
 export default {
   name: 'SelectColor',
   components: {},
@@ -50,7 +52,11 @@ export default {
     closeDialog () {
       this.$emit('closeDialog')
     },
-    confirmDialog () {
+    async confirmDialog () {
+      // 获取生成的主题色css样式表
+      const newStyleText = await generateNewStyle(this.themeColor)
+      // 将新的主题色写入
+      writeNewStyle(newStyleText)
       // 调用vuex中的方法保存主题色
       this.$store.dispatch('theme/setThemeColor', this.themeColor)
       this.closeDialog()

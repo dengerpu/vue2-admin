@@ -6,8 +6,15 @@
 
 <script>
 // import { setItem, getItem, removeItem } from '@/utils/storage'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
+
 export default {
-  name: 'app'
+  name: 'app',
+  beforeMount () {
+    generateNewStyle(this.$store.getters.themeColor).then(newStyleText => {
+      writeNewStyle(newStyleText)
+    })
+  }
   // vuex数据持久化（也可以用插件vuex-persistedstate）stall
   // mounted () {
   //   window.addEventListener('beforeunload', this.saveState)
