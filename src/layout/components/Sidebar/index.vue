@@ -1,13 +1,13 @@
 <template>
   <div class="sidebar" :style="{height: sidebarHeight}">
-    <sidebar-logo class="has-logo" v-if="hasLogo" :is-menu="true" :collapse="!$store.getters.sidebar.opened"></sidebar-logo>
+    <sidebar-logo :style="{backgroundColor: this.$store.getters.cssVar.subMenuHover}" class="has-logo" v-if="hasLogo" :is-menu="true" :collapse="!$store.getters.sidebar.opened"></sidebar-logo>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :collapse="!$store.getters.sidebar.opened"
         :default-active="activeMenu"
-        :background-color="variables.menuBg"
-        :text-color="variables.menuText"
-        :active-text-color="variables.menuActiveText">
+        :background-color="this.$store.getters.cssVar.menuBg"
+        :text-color="this.$store.getters.cssVar.menuHover"
+        :active-text-color="this.$store.getters.cssVar.subMenuHover">
         <SidebarItem v-for="route in routes" :item="route" :key="route.path" :base-path="route.path"></SidebarItem>
       </el-menu>
     </el-scrollbar>
