@@ -72,7 +72,8 @@ export default {
   universal: {
     tip: 'tip',
     confirm: 'confirm',
-    cancel: 'cancel'
+    cancel: 'cancel',
+    notWork: 'you browser can not work'
   },
   navbar: {
     dashboard: 'Dashboard',

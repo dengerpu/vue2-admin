@@ -80,7 +80,8 @@ export default {
   universal: {
     tip: '提示',
     confirm: '确定',
-    cancel: '取消'
+    cancel: '取消',
+    notWork: '你的浏览器不支持'
   },
   login: {
     title: '系统登录',
