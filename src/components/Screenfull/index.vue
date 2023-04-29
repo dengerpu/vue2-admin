@@ -5,18 +5,12 @@
 </template>
 
 <script>
+// https://github.com/sindresorhus/screenfull
 import screenfull from 'screenfull'
 import { Message } from 'element-ui'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Screenfull',
-  components: {},
-  props: {},
-  watch: {
-    isFullScreen: {
-
-    }
-  },
   data () {
     return {
       // 是否全屏
@@ -59,5 +53,6 @@ export default {
 .screenFull-container {
   padding: 0 5px;
   color: #ffffff;
+  cursor: pointer;
 }
 </style>

@@ -7,9 +7,15 @@
       </div>
     </div>
     <div class="header-right fr">
+      <!--搜索-->
+      <header-search></header-search>
+      <!--全屏-->
       <screenfull></screenfull>
+      <!--主题更换-->
       <theme-picker></theme-picker>
+      <!--国际化-->
       <lang-select></lang-select>
+      <!--头像-->
       <el-dropdown>
         <div class="avatar-container">
           <el-avatar shape="square" :size="40" src="https://blog-1300527744.cos-website.ap-chongqing.myqcloud.com/img/icon.png"></el-avatar>
@@ -35,9 +41,10 @@ import globalInfo from '@/settings.js'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemePicker'
 import Screenfull from '@/components/Screenfull'
+import HeaderSearch from '@/components/HeaderSearch'
 export default {
   name: 'DepHeader',
-  components: { Screenfull, ThemePicker, LangSelect },
+  components: { HeaderSearch, Screenfull, ThemePicker, LangSelect },
   props: {},
   data () {
     return {
