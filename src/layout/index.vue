@@ -6,7 +6,7 @@
     <el-container class="app-wrapper">
       <!--左侧菜单-->
       <el-aside class="sidebar-container" :width="$store.getters.sidebar.opened ? variables.sideBarWidth : variables.hideSideBarWidth">
-        <Sidebar></Sidebar>
+        <Sidebar id="guide-sidebar"></Sidebar>
       </el-aside>
       <el-main class="main-container">
         <!-- 顶部的 navbar -->

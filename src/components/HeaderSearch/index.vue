@@ -83,7 +83,6 @@ export default {
     querySearch (query) {
       if (query !== '') {
         this.searchOptions = this.fuse.search(query)
-        console.log(this.searchOptions)
       } else {
         this.searchOptions = []
       }

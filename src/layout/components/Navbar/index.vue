@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-container">
-    <hamburger @toggleClick="toggleSideBar" class="fl"></hamburger>
-    <Breadcrumb class="fl"></Breadcrumb>
+    <hamburger id="guide-hamburger" @toggleClick="toggleSideBar" class="fl"></hamburger>
+    <Breadcrumb id="guide-breadcrumb" class="fl"></Breadcrumb>
   </div>
 </template>
 

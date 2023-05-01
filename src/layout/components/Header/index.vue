@@ -7,14 +7,16 @@
       </div>
     </div>
     <div class="header-right fr">
+      <!--引导-->
+      <guide id="guide-start"></guide>
       <!--搜索-->
-      <header-search></header-search>
+      <header-search id="guide-search"></header-search>
       <!--全屏-->
-      <screenfull></screenfull>
+      <screenfull id="guide-full"></screenfull>
       <!--主题更换-->
-      <theme-picker></theme-picker>
+      <theme-picker id="guide-theme"></theme-picker>
       <!--国际化-->
-      <lang-select></lang-select>
+      <lang-select id="guide-lang"></lang-select>
       <!--头像-->
       <el-dropdown>
         <div class="avatar-container">
@@ -42,9 +44,10 @@ import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemePicker'
 import Screenfull from '@/components/Screenfull'
 import HeaderSearch from '@/components/HeaderSearch'
+import Guide from '@/components/Guide'
 export default {
   name: 'DepHeader',
-  components: { HeaderSearch, Screenfull, ThemePicker, LangSelect },
+  components: { Guide, HeaderSearch, Screenfull, ThemePicker, LangSelect },
   props: {},
   data () {
     return {
