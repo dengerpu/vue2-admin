@@ -11,6 +11,7 @@
       <el-main class="main-container">
         <!-- 顶部的 navbar -->
         <navbar class="navbar-container"></navbar>
+        <tags-view></tags-view>
         <!--内容区-->
         <app-main></app-main>
       </el-main>
@@ -23,6 +24,7 @@ import Sidebar from './components/Sidebar'
 import Navbar from '@/layout/components/Navbar'
 import AppMain from '@/layout/components/AppMain'
 import DepHeader from '@/layout/components/Header'
+import TagsView from '@/layout/components/TagsView'
 // import variables from '@/styles/variables.scss'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -31,7 +33,8 @@ export default {
     DepHeader,
     AppMain,
     Navbar,
-    Sidebar
+    Sidebar,
+    TagsView
   },
   props: {},
   data () {

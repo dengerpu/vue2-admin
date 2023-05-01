@@ -1,4 +1,4 @@
-
+import i18n from '@/lang'
 /**
  * 侧边栏菜单，以及面包屑数据国际化
  * @param title
@@ -12,10 +12,10 @@ export function generateTitle (title) {
   } else {
     title = title.replace(title[0], title[0].toLowerCase())
   }
-  const hasKey = this.$te('route.' + title)
+  const hasKey = i18n.te('route.' + title)
   if (hasKey) {
     // $t :this method from vue-i18n, inject in @/lang/index.js
-    const translatedTitle = this.$t('route.' + title)
+    const translatedTitle = i18n.t('route.' + title)
     return translatedTitle
   }
   return title

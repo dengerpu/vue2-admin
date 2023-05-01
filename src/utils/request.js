@@ -17,7 +17,7 @@ service.interceptors.request.use(
     if (store.getters.token) {
       // token已经过期(主动处理)
       if (isCheckTimeout()) {
-        store.dispatch('logout')
+        store.dispatch('user/logout')
         return Promise.reject(new Error('token 失效，请重新登陆！'))
       }
       // 每次请求将token携带过去
@@ -43,7 +43,7 @@ service.interceptors.response.use(
       })
       // 401 认证失败(token过期或失效或非法) 403 权限不足
       if (res.code === 401) {
-        store.dispatch('logout')
+        store.dispatch('user/logout')
       }
     } else {
       return res

@@ -11,7 +11,8 @@ const getters = {
       ...state.theme.variables,
       ...generateColors(state.theme.themeColor)
     }
-  }
+  },
+  tagsViewList: state => state.tagsView.tagsViewList
 }
 // 用上面简写的形式
 // const getters = {

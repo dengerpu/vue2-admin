@@ -101,7 +101,7 @@ export default {
     handleLogin () {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch('login', this.userInfo).then((res) => {
+          this.$store.dispatch('user/login', this.userInfo).then((res) => {
             this.$router.push('/')
           }).catch((err) => {
             Message.error(err)
