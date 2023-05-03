@@ -20,9 +20,6 @@ export default {
   mounted () {
     this.init()
   },
-  beforeDestroy () {
-    this.destroy()
-  },
   methods: {
     toggleScreen () {
       // 不支持全屏，提示‘你的浏览器不支持’
@@ -38,11 +35,6 @@ export default {
     init () {
       if (screenfull.isEnabled) {
         screenfull.on('change', this.change)
-      }
-    },
-    destory () {
-      if (screenfull.isEnabled) {
-        screenfull.off('change', this.change)
       }
     }
   }
