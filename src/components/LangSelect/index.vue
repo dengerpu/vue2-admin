@@ -2,7 +2,7 @@
   <el-dropdown @command="handleSetLanguage" class="langSelect-container">
     <div>
       <el-tooltip :content="this.$t('navbar.i18n')" :effect="effect">
-        <svg-icon class="langSelect-icon" icon-class="language" />
+        <svg-icon :style="{color: color}" class="langSelect-icon" icon-class="language" />
       </el-tooltip>
     </div>
     <el-dropdown-menu slot="dropdown" class="langSelect-menu">
@@ -25,6 +25,10 @@ export default {
       validator: function (value) {
         return ['dark', 'light'].indexOf(value) !== -1
       }
+    },
+    color: {
+      type: String,
+      default: '#fff'
     }
   },
   data () {

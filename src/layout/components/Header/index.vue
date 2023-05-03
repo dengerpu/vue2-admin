@@ -57,7 +57,7 @@ export default {
   methods: {
     // 退出登陆
     handleLogout () {
-      this.$store.dispatch('LOGOUT')
+      this.$store.dispatch('user/logout')
     }
   }
 }
