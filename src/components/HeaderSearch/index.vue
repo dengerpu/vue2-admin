@@ -22,6 +22,7 @@
 import path from 'path'
 import Fuse from 'fuse.js'
 import { constantRoutes, asyncRoutes } from '@/router'
+import { generateTitle } from '@/utils/i18n'
 // import { generateTitle } from '@/utils/i18n'
 export default {
   name: 'HeaderSearch',
@@ -79,6 +80,7 @@ export default {
     this.searchData = this.generateSearchData(this.routes)
   },
   methods: {
+    generateTitle,
     // 搜索事件
     querySearch (query) {
       if (query !== '') {
@@ -168,26 +170,6 @@ export default {
         }
       }
       return result
-    },
-    generateTitle (title) {
-      // title可能包含空格，并且首字母是大写
-      title = title.replace(/\s+/g, '')
-      if (this.validUpperCase(title)) {
-        title = title.toLowerCase()
-      } else {
-        title = title.replace(title[0], title[0].toLowerCase())
-      }
-      const hasKey = this.$te('route.' + title)
-      if (hasKey) {
-        // $t :this method from vue-i18n, inject in @/lang/index.js
-        const translatedTitle = this.$t('route.' + title)
-        return translatedTitle
-      }
-      return this.$t('route.' + title)
-    },
-    validUpperCase (str) {
-      const reg = /^[A-Z]+$/
-      return reg.test(str)
     }
   }
 }

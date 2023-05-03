@@ -42,7 +42,7 @@ export default {
       const first = matched[0]
       // 如果第一个不是首页，就要把首页加进去
       if (!this.isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched)
+        matched = [{ path: '/dashboard', meta: { title: 'dashboard' } }].concat(matched)
       }
       this.breadcrumbData = matched
     },

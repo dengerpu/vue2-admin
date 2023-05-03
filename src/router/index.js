@@ -64,7 +64,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        meta: { title: 'dashboard', icon: 'dashboard', affix: true }
       }
     ]
   },
@@ -76,7 +76,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
+        meta: { title: 'documentation', icon: 'documentation', affix: true }
       }
     ]
   },
@@ -89,7 +89,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }
+        meta: { title: 'guide', icon: 'guide', noCache: true }
       }
     ]
   },
@@ -103,7 +103,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile/index'),
         name: 'Profile',
-        meta: { title: 'Profile', icon: 'user', noCache: true }
+        meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
   }
@@ -121,7 +121,7 @@ export const asyncRoutes = [
     alwaysShow: true, // will always show the root menu
     name: 'Permission',
     meta: {
-      title: 'Permission',
+      title: 'permission',
       icon: 'lock',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
@@ -131,7 +131,7 @@ export const asyncRoutes = [
         component: () => import('@/views/permission/page'),
         name: 'PagePermission',
         meta: {
-          title: 'Page Permission',
+          title: 'pagePermission',
           roles: ['admin'] // or you can only set roles in sub nav
         }
       },
@@ -140,7 +140,7 @@ export const asyncRoutes = [
         component: () => import('@/views/permission/directive'),
         name: 'DirectivePermission',
         meta: {
-          title: 'Directive Permission'
+          title: 'directivePermission'
           // if do not set roles, means: this page does not require permission
         }
       },
@@ -149,7 +149,7 @@ export const asyncRoutes = [
         component: () => import('@/views/permission/role'),
         name: 'RolePermission',
         meta: {
-          title: 'Role Permission',
+          title: 'rolePermission',
           roles: ['admin']
         }
       }
@@ -164,7 +164,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/icons/index'),
         name: 'Icons',
-        meta: { title: 'Icons', icon: 'icon', noCache: true }
+        meta: { title: 'icons', icon: 'icon', noCache: true }
       }
     ]
   },
@@ -181,7 +181,7 @@ export const asyncRoutes = [
     redirect: '/example/list',
     name: 'Example',
     meta: {
-      title: 'Example',
+      title: 'example',
       icon: 'el-icon-s-help'
     },
     children: [
@@ -189,20 +189,20 @@ export const asyncRoutes = [
         path: 'create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
-        meta: { title: 'Create Article', icon: 'edit' }
+        meta: { title: 'createArticle', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        meta: { title: 'editArticle', noCache: true, activeMenu: '/example/list' },
         hidden: true
       },
       {
         path: 'list',
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
+        meta: { title: 'articleList', icon: 'list' }
       }
     ]
   },
@@ -215,7 +215,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/tab/index'),
         name: 'Tab',
-        meta: { title: 'Tab', icon: 'tab' }
+        meta: { title: 'tab', icon: 'tab' }
       }
     ]
   },
@@ -226,7 +226,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     name: 'ErrorPages',
     meta: {
-      title: 'Error Pages',
+      title: 'errorPages',
       icon: '404'
     },
     children: [
@@ -234,13 +234,13 @@ export const asyncRoutes = [
         path: '401',
         component: () => import('@/views/error-page/401'),
         name: 'Page401',
-        meta: { title: '401', noCache: true }
+        meta: { title: 'page401', noCache: true }
       },
       {
         path: '404',
         component: () => import('@/views/error-page/404'),
         name: 'Page404',
-        meta: { title: '404', noCache: true }
+        meta: { title: 'page404', noCache: true }
       }
     ]
   },
@@ -253,7 +253,7 @@ export const asyncRoutes = [
         path: 'log',
         component: () => import('@/views/error-log/index'),
         name: 'ErrorLog',
-        meta: { title: 'Error Log', icon: 'bug' }
+        meta: { title: 'errorLog', icon: 'bug' }
       }
     ]
   },
@@ -264,7 +264,7 @@ export const asyncRoutes = [
     redirect: '/excel/export-excel',
     name: 'Excel',
     meta: {
-      title: 'Excel',
+      title: 'excel',
       icon: 'excel'
     },
     children: [
@@ -272,25 +272,25 @@ export const asyncRoutes = [
         path: 'export-excel',
         component: () => import('@/views/excel/export-excel'),
         name: 'ExportExcel',
-        meta: { title: 'Export Excel' }
+        meta: { title: 'exportExcel' }
       },
       {
         path: 'export-selected-excel',
         component: () => import('@/views/excel/select-excel'),
         name: 'SelectExcel',
-        meta: { title: 'Select Excel' }
+        meta: { title: 'selectExcel' }
       },
       {
         path: 'export-merge-header',
         component: () => import('@/views/excel/merge-header'),
         name: 'MergeHeader',
-        meta: { title: 'Merge Header' }
+        meta: { title: 'mergeHeader' }
       },
       {
         path: 'upload-excel',
         component: () => import('@/views/excel/upload-excel'),
         name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
+        meta: { title: 'uploadExcel' }
       }
     ]
   },
@@ -301,13 +301,13 @@ export const asyncRoutes = [
     redirect: '/zip/download',
     alwaysShow: true,
     name: 'Zip',
-    meta: { title: 'Zip', icon: 'zip' },
+    meta: { title: 'zip', icon: 'zip' },
     children: [
       {
         path: 'download',
         component: () => import('@/views/zip/index'),
         name: 'ExportZip',
-        meta: { title: 'Export Zip' }
+        meta: { title: 'exportZip' }
       }
     ]
   },
@@ -321,7 +321,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/pdf/index'),
         name: 'PDF',
-        meta: { title: 'PDF', icon: 'pdf' }
+        meta: { title: 'pdf', icon: 'pdf' }
       }
     ]
   },
@@ -339,7 +339,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/theme/index'),
         name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme' }
+        meta: { title: 'theme', icon: 'theme' }
       }
     ]
   },
@@ -352,7 +352,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/clipboard/index'),
         name: 'ClipboardDemo',
-        meta: { title: 'Clipboard', icon: 'clipboard' }
+        meta: { title: 'clipboardDemo', icon: 'clipboard' }
       }
     ]
   },
@@ -363,7 +363,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'https://www.baidu.com',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: { title: 'externalLink', icon: 'link' }
       }
     ]
   },
