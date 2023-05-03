@@ -85,6 +85,6 @@ const getOriginalStyle = async () => {
   // 获取当前项目中element对应版本的css
   const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
   const { data } = await axios(url)
-  // 把获取到的数据转换为原样式模板
-  return getStyleTemplate(data)
+  // 把获取到的数据转换为原样式模板(这里不需要替换@font-face)
+  return getStyleTemplate(data.replace(/@font-face{[^}]+}/, ''))
 }
