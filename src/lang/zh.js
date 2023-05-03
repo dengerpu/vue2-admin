@@ -197,8 +197,10 @@ export default {
   tagsView: {
     refresh: '刷新',
     close: '关闭',
+    closeRight: '关闭右侧',
     closeOthers: '关闭其它',
-    closeAll: '关闭所有'
+    closeAll: '关闭所有',
+    labelOption: '标签操作'
   },
   settings: {
     title: '系统布局配置',

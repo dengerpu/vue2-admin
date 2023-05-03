@@ -198,8 +198,10 @@ export default {
   tagsView: {
     refresh: 'Refresh',
     close: 'Close',
+    closeRight: 'Close Right',
     closeOthers: 'Close Others',
-    closeAll: 'Close All'
+    closeAll: 'Close All',
+    labelOption: 'Label Option'
   },
   settings: {
     title: 'Page style setting',
