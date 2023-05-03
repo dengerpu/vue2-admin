@@ -221,7 +221,8 @@ export default {
     sidebarLogo: 'Sidebar Logo'
   },
   globalInfo: {
-    title: global.enTitle
+    title: global.enTitle,
+    invalidity: 'Token invalid, please log in again!'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'

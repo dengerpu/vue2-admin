@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store/index.js'
 import { isCheckTimeout } from '@/utils/auth'
+import i18n from '@/lang'
 
 // 创建axios实例
 const service = axios.create({
@@ -18,7 +19,7 @@ service.interceptors.request.use(
       // token已经过期(主动处理)
       if (isCheckTimeout()) {
         store.dispatch('user/logout')
-        return Promise.reject(new Error('token 失效，请重新登陆！'))
+        return Promise.reject(new Error(i18n.t('globalInfo.invalidity')))
       }
       // 每次请求将token携带过去
       config.headers[TOKEN] = store.getters.token

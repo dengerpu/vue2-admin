@@ -220,7 +220,8 @@ export default {
     sidebarLogo: '侧边栏 Logo'
   },
   globalInfo: {
-    title: global.zhTitle
+    title: global.zhTitle,
+    invalidity: 'token 失效，请重新登陆！'
   },
   toast: {
     switchLangSuccess: '切换语言成功'
