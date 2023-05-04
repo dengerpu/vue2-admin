@@ -17,6 +17,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.app-main {
+  padding: 20px;
+}
 .route-transform-leave-active,
 .route-transform-enter-active {
   transition: all 0.5s;
