@@ -19,6 +19,9 @@
     </div>
 
     <!--用户描述-->
+    <d-user-describe title="用户昵称" icon="el-icon-user" :info="this.$store.getters.userInfo.username"></d-user-describe>
+    <d-user-describe title="手机号码" icon="el-icon-mobile" :info="this.$store.getters.userInfo.phone"></d-user-describe>
+    <d-user-describe title="用户邮箱" icon="el-icon-message" :info="this.$store.getters.userInfo.email"></d-user-describe>
     <d-user-describe icon="education" title="Education">
       <span>Chongqing University of Posts and Telecommunications</span>
     </d-user-describe>

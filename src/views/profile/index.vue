@@ -17,7 +17,9 @@
               Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.
             </d-user-activity>
           </el-tab-pane>
-          <el-tab-pane label="Timeline" name="timeline">timeline</el-tab-pane>
+          <el-tab-pane label="Timeline" name="timeline">
+            <d-time-line></d-time-line>
+          </el-tab-pane>
           <el-tab-pane label="Account" name="account">account</el-tab-pane>
         </el-tabs>
       </el-card>
@@ -28,10 +30,11 @@
 <script>
 import DUserCard from '@/views/profile/components/DUserCard'
 import DUserActivity from '@/views/profile/components/DUserActivity'
+import DTimeLine from '@/views/profile/components/DTimeLine'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Profile',
-  components: { DUserActivity, DUserCard },
+  components: { DTimeLine, DUserActivity, DUserCard },
   props: {},
   data () {
     return {
