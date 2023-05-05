@@ -24,12 +24,12 @@
           <i  class="avatar-icon el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>
-              <router-link to="/">
+          <router-link to="/">
               <el-dropdown-item> {{ $t('navbar.dashboard') }} </el-dropdown-item>
-              </router-link>
-          </el-dropdown-item>
-          <el-dropdown-item>{{$t('navbar.profile')}}</el-dropdown-item>
+          </router-link>
+          <router-link to="/profile/index">
+            <el-dropdown-item>{{$t('navbar.profile')}}</el-dropdown-item>
+          </router-link>
           <el-dropdown-item divided >
             <span @click="handleLogout">{{$t('navbar.logOut')}}</span>
           </el-dropdown-item>

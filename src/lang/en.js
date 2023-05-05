@@ -64,7 +64,9 @@ export default {
     clipboardDemo: 'Clipboard',
     i18n: 'I18n',
     externalLink: 'External Link',
-    profile: 'Profile'
+    profile: 'Profile',
+    system: 'System',
+    user: 'User Manage'
   },
   sidebar: {
     menu: 'menu'

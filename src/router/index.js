@@ -115,6 +115,24 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
+    path: '/system',
+    component: Layout,
+    alwaysShow: true,
+    meta: {
+      title: 'system',
+      icon: 'el-icon-s-tools',
+      roles: ['admin'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'user',
+        component: () => import('@/views/system/DUser'),
+        name: 'User',
+        meta: { title: 'user', icon: 'el-icon-user-solid', noCache: true }
+      }
+    ]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/page',
