@@ -6,10 +6,16 @@ import './styles/index.scss'
 import './icons'
 import ElementUI from 'element-ui' // 引入icons(全局注册SvgIcon和svg)
 import i18n from '@/lang' // 国际化
+import * as filters from './filters' // 过滤器
 
 import './permission'
 
 require('./mock/index')
+
+// 全局注册过滤器
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 Vue.use(ElementUI, {
   size: 'medium', // set element-ui default size
