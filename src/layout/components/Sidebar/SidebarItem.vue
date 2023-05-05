@@ -65,6 +65,7 @@ export default {
   data() {
     // 修复问题：https://github.com/PanJiaChen/vue-admin-template/issues/237
     this.onlyOneChild = null
+    return {}
   },
   methods: {
     generateTitle,
