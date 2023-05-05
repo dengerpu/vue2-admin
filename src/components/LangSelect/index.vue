@@ -2,12 +2,20 @@
   <el-dropdown @command="handleSetLanguage" class="langSelect-container">
     <div>
       <el-tooltip :content="this.$t('navbar.i18n')" :effect="effect">
-        <svg-icon :style="{color: color}" class="langSelect-icon" icon-class="language" />
+        <svg-icon
+          :style="{ color: color }"
+          class="langSelect-icon"
+          icon-class="language"
+        />
       </el-tooltip>
     </div>
     <el-dropdown-menu slot="dropdown" class="langSelect-menu">
-      <el-dropdown-item :disabled="language === 'zh'" command="zh">中文</el-dropdown-item>
-      <el-dropdown-item :disabled="language === 'en'" command="en">english</el-dropdown-item>
+      <el-dropdown-item :disabled="language === 'zh'" command="zh"
+        >中文</el-dropdown-item
+      >
+      <el-dropdown-item :disabled="language === 'en'" command="en"
+        >english</el-dropdown-item
+      >
     </el-dropdown-menu>
   </el-dropdown>
 </template>
@@ -31,16 +39,16 @@ export default {
       default: '#fff'
     }
   },
-  data () {
+  data() {
     return {}
   },
   computed: {
-    language () {
+    language() {
       return this.$store.getters.language
     }
   },
   methods: {
-    handleSetLanguage (lang) {
+    handleSetLanguage(lang) {
       this.$i18n.locale = lang
       this.$store.dispatch('app/setLanguage', lang)
       Message.success(this.$t('toast.switchLangSuccess'))

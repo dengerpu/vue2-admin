@@ -1,5 +1,11 @@
 <template>
-  <el-dialog :title="$t('universal.tip')" class="selectColor-container" :visible="dialogVisible" width="22%" @close="closeDialog">
+  <el-dialog
+    :title="$t('universal.tip')"
+    class="selectColor-container"
+    :visible="dialogVisible"
+    width="22%"
+    @close="closeDialog"
+  >
     <div class="selectColor-content">
       <p class="title">{{ $t('theme.themeColorChange') }}</p>
       <el-color-picker
@@ -9,8 +15,10 @@
       ></el-color-picker>
     </div>
     <span slot="footer" class="dialog-footer">
-        <el-button @click="closeDialog">{{ $t('universal.cancel') }}</el-button>
-        <el-button type="primary" @click="confirmDialog">{{$t('universal.confirm') }}</el-button>
+      <el-button @click="closeDialog">{{ $t('universal.cancel') }}</el-button>
+      <el-button type="primary" @click="confirmDialog">{{
+        $t('universal.confirm')
+      }}</el-button>
     </span>
   </el-dialog>
 </template>
@@ -27,7 +35,7 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       themeColor: this.$store.getters.themeColor,
       predefineColors: [
@@ -49,10 +57,10 @@ export default {
     }
   },
   methods: {
-    closeDialog () {
+    closeDialog() {
       this.$emit('closeDialog')
     },
-    async confirmDialog () {
+    async confirmDialog() {
       // 获取生成的主题色css样式表
       const newStyleText = await generateNewStyle(this.themeColor)
       // 将新的主题色写入

@@ -14,7 +14,7 @@ const TOKEN = 'token'
 
 // 请求拦截
 service.interceptors.request.use(
-  config => {
+  (config) => {
     if (store.getters.token) {
       // token已经过期(主动处理)
       if (isCheckTimeout()) {
@@ -26,7 +26,7 @@ service.interceptors.request.use(
     }
     return config
   },
-  error => {
+  (error) => {
     console.log(error)
     return Promise.reject(error)
   }
@@ -34,7 +34,7 @@ service.interceptors.request.use(
 
 // 响应拦截
 service.interceptors.response.use(
-  response => {
+  (response) => {
     const res = response.data
     if (res.code !== 200) {
       Message({
@@ -50,7 +50,7 @@ service.interceptors.response.use(
       return res
     }
   },
-  error => {
+  (error) => {
     Message({
       message: error.message || 'Error',
       type: 'error',

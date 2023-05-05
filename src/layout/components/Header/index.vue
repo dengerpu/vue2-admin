@@ -2,8 +2,12 @@
   <div class="header-container">
     <div class="header-left fl">
       <div class="logo">
-        <img class="logo-img" :src="globalInfo.logo" :alt="$t('globalInfo.title')">
-        <h1 class="logo-title">{{$t('globalInfo.title')}}</h1>
+        <img
+          class="logo-img"
+          :src="globalInfo.logo"
+          :alt="$t('globalInfo.title')"
+        />
+        <h1 class="logo-title">{{ $t('globalInfo.title') }}</h1>
       </div>
     </div>
     <div class="header-right fr">
@@ -20,18 +24,22 @@
       <!--头像-->
       <el-dropdown>
         <div class="avatar-container">
-          <el-avatar shape="square" :size="40" src="https://blog-1300527744.cos-website.ap-chongqing.myqcloud.com/img/icon.png"></el-avatar>
-          <i  class="avatar-icon el-icon-caret-bottom"></i>
+          <el-avatar
+            shape="square"
+            :size="40"
+            src="https://blog-1300527744.cos-website.ap-chongqing.myqcloud.com/img/icon.png"
+          ></el-avatar>
+          <i class="avatar-icon el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
-              <el-dropdown-item> {{ $t('navbar.dashboard') }} </el-dropdown-item>
+            <el-dropdown-item> {{ $t('navbar.dashboard') }} </el-dropdown-item>
           </router-link>
           <router-link to="/profile/index">
-            <el-dropdown-item>{{$t('navbar.profile')}}</el-dropdown-item>
+            <el-dropdown-item>{{ $t('navbar.profile') }}</el-dropdown-item>
           </router-link>
-          <el-dropdown-item divided >
-            <span @click="handleLogout">{{$t('navbar.logOut')}}</span>
+          <el-dropdown-item divided>
+            <span @click="handleLogout">{{ $t('navbar.logOut') }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -49,14 +57,14 @@ export default {
   name: 'DepHeader',
   components: { Guide, HeaderSearch, Screenfull, ThemePicker, LangSelect },
   props: {},
-  data () {
+  data() {
     return {
       globalInfo
     }
   },
   methods: {
     // 退出登陆
-    handleLogout () {
+    handleLogout() {
       this.$store.dispatch('user/logout')
     }
   }
@@ -64,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/styles/variables.scss";
+@import '~@/styles/variables.scss';
 .header-container {
   height: #{$headerHeight};
   overflow: hidden;
@@ -104,7 +112,7 @@ export default {
       }
     }
     .avatar-container:hover {
-      background: rgba(0, 0, 0, .025);
+      background: rgba(0, 0, 0, 0.025);
     }
   }
 }

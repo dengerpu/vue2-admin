@@ -18,10 +18,10 @@ export default {
   },
   computed: {
     // 判断是否是外部链接
-    isExternal () {
+    isExternal() {
       return isExternal(this.to)
     },
-    type () {
+    type() {
       // 如果是外部链接，就用a标签，不是外部标签就使用<router-link>
       if (this.isExternal) {
         return 'a'
@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    linkProps (to) {
+    linkProps(to) {
       // 是外部链接添加属性  <a :href="to" target="_blank" rel="noopener"></a>
       if (this.isExternal) {
         return {
@@ -48,6 +48,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,28 +1,48 @@
 <template>
   <div class="tags-view-container">
     <el-scrollbar class="tags-view-wrapper">
-      <router-link class="tags-view-item" :class="isActive(tag)?'active':''"
-                   v-for="(tag, index) in tagsViewList" :key="index"
-                   :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
-                  @contextmenu.prevent.native="openContextMenu($event, index, tag)"
-                   @click="this.selectIndex = index"
+      <router-link
+        class="tags-view-item"
+        :class="isActive(tag) ? 'active' : ''"
+        v-for="(tag, index) in tagsViewList"
+        :key="index"
+        :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
+        @contextmenu.prevent.native="openContextMenu($event, index, tag)"
+        @click="this.selectIndex = index"
       >
-        {{generateTitle(tag.title)}}
-        <i v-if="!isFixTag(tag)" class="el-icon-close" @click.prevent.stop="closeTag(index, isActive(tag))"></i>
+        {{ generateTitle(tag.title) }}
+        <i
+          v-if="!isFixTag(tag)"
+          class="el-icon-close"
+          @click.prevent.stop="closeTag(index, isActive(tag))"
+        ></i>
       </router-link>
     </el-scrollbar>
     <div class="tags-options-container">
       <el-dropdown @command="labelOptions">
         <span class="el-dropdown-link">
-          {{ this.$t('tagsView.labelOption') }}<i class="el-icon-arrow-down el-icon--right"></i>
+          {{ this.$t('tagsView.labelOption')
+          }}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
-      <el-dropdown-menu class="el-dropdown-menu" slot="dropdown">
-        <el-dropdown-item command="closeOthers"><span>{{this.$t('tagsView.closeOthers')}}</span></el-dropdown-item>
-        <el-dropdown-item command="closeAll"><span>{{this.$t('tagsView.closeAll')}}</span></el-dropdown-item>
-      </el-dropdown-menu>
+        <el-dropdown-menu class="el-dropdown-menu" slot="dropdown">
+          <el-dropdown-item command="closeOthers"
+            ><span>{{
+              this.$t('tagsView.closeOthers')
+            }}</span></el-dropdown-item
+          >
+          <el-dropdown-item command="closeAll"
+            ><span>{{ this.$t('tagsView.closeAll') }}</span></el-dropdown-item
+          >
+        </el-dropdown-menu>
       </el-dropdown>
     </div>
-    <context-menu v-show="isShowContextMenu" :style="contextMenu" :index="selectIndex" :is-active="isActiveTag" :is-fix-tag="isFix"></context-menu>
+    <context-menu
+      v-show="isShowContextMenu"
+      :style="contextMenu"
+      :index="selectIndex"
+      :is-active="isActiveTag"
+      :is-fix-tag="isFix"
+    ></context-menu>
   </div>
 </template>
 
@@ -32,13 +52,17 @@ import { generateTitle } from '@/utils/i18n'
 import { isTags } from '@/utils/tags'
 import ContextMenu from '@/layout/components/TagsView/components/contextMenu'
 import { asyncRoutes, constantRoutes } from '@/router'
-import { closeTag, closeOtherTags, closeAllTags } from '@/layout/components/TagsView/components'
+import {
+  closeTag,
+  closeOtherTags,
+  closeAllTags
+} from '@/layout/components/TagsView/components'
 
 export default {
   name: 'TagsView',
   components: { ContextMenu },
   props: {},
-  data () {
+  data() {
     return {
       // 是否展示ContextMenu组件
       isShowContextMenu: false,
@@ -55,21 +79,21 @@ export default {
     }
   },
   computed: {
-    routes () {
+    routes() {
       return [...constantRoutes, ...asyncRoutes]
     },
-    tagsViewList () {
+    tagsViewList() {
       return this.$store.getters.tagsViewList
     }
   },
   watch: {
     // 监听路由变化
-    $route (to, from) {
+    $route(to, from) {
       this.addTags()
       this.getCurrentIndex(to.path)
     },
     // 监听isShowContextMenu值的变化，为body添加关闭事件
-    isShowContextMenu (value) {
+    isShowContextMenu(value) {
       if (value) {
         document.body.addEventListener('click', this.closeContextMenu)
       } else {
@@ -77,7 +101,7 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.initTags()
     this.addTags()
     this.getCurrentIndex(this.$route.path)
@@ -91,7 +115,7 @@ export default {
      * 添加tag
      *
      */
-    addTags () {
+    addTags() {
       const { fullPath, meta, name, params, path, query } = this.$route
       if (!isTags(path)) return
       this.$store.dispatch('tagsView/add_tags', {
@@ -109,7 +133,7 @@ export default {
      * @param tags
      * @returns {boolean}
      */
-    isActive (tags) {
+    isActive(tags) {
       return tags.path === this.$route.path
     },
     /***
@@ -118,7 +142,7 @@ export default {
      * @param index
      * @param tag
      */
-    openContextMenu (e, index, tag) {
+    openContextMenu(e, index, tag) {
       const { x, y } = e
       this.contextMenu.left = x + 'px'
       this.contextMenu.top = y + 'px'
@@ -130,7 +154,7 @@ export default {
     /**
      * 关闭菜单
      */
-    closeContextMenu () {
+    closeContextMenu() {
       this.isShowContextMenu = false
     },
     /**
@@ -138,9 +162,9 @@ export default {
      * @param routes
      * @param basePath
      */
-    getAffixTags (routes, basePath = '/') {
+    getAffixTags(routes, basePath = '/') {
       let tags = []
-      routes.forEach(route => {
+      routes.forEach((route) => {
         const tagPath = path.resolve(basePath, route.path)
         if (route.meta && route.meta.affix) {
           tags.push({
@@ -165,8 +189,8 @@ export default {
     /**
      * 初始化TagsView标签
      */
-    initTags () {
-      const fixTags = this.fixTags = this.getAffixTags(this.routes)
+    initTags() {
+      const fixTags = (this.fixTags = this.getAffixTags(this.routes))
       for (const tag of fixTags) {
         this.$store.dispatch('tagsView/add_tags', tag)
       }
@@ -176,7 +200,7 @@ export default {
      * @param tag
      * @returns {boolean|*}
      */
-    isFixTag (tag) {
+    isFixTag(tag) {
       return tag.meta && tag.meta.affix
     },
 
@@ -184,7 +208,7 @@ export default {
      * 标签操作
      * @param command
      */
-    labelOptions (command) {
+    labelOptions(command) {
       if (command === 'closeOthers') {
         this.closeOtherTags(this.selectIndex)
       } else if (command === 'closeAll') {
@@ -192,11 +216,11 @@ export default {
       }
     },
     // 获取当前标签的索引
-    getCurrentIndex (path) {
-      const index = this.$store.getters.tagsViewList.findIndex(item => {
+    getCurrentIndex(path) {
+      const index = this.$store.getters.tagsViewList.findIndex((item) => {
         return item.path === path
       })
-      this.selectIndex = (index === -1 ? 0 : index)
+      this.selectIndex = index === -1 ? 0 : index
     }
   }
 }
@@ -284,10 +308,10 @@ export default {
         vertical-align: 2px;
         border-radius: 50%;
         text-align: center;
-        transition: all .3s cubic-bezier(.645, .045, .355, 1);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         transform-origin: 100% 50%;
         &:before {
-          transform: scale(.6);
+          transform: scale(0.6);
           display: inline-block;
           vertical-align: -3px;
         }
@@ -298,6 +322,5 @@ export default {
       }
     }
   }
-
 }
 </style>

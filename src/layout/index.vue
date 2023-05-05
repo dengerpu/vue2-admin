@@ -5,7 +5,14 @@
     </el-header>
     <el-container class="app-wrapper">
       <!--左侧菜单-->
-      <el-aside class="sidebar-container" :width="$store.getters.sidebar.opened ? variables.sideBarWidth : variables.hideSideBarWidth">
+      <el-aside
+        class="sidebar-container"
+        :width="
+          $store.getters.sidebar.opened
+            ? variables.sideBarWidth
+            : variables.hideSideBarWidth
+        "
+      >
         <Sidebar id="guide-sidebar"></Sidebar>
       </el-aside>
       <el-main class="main-container">
@@ -37,7 +44,7 @@ export default {
     TagsView
   },
   props: {},
-  data () {
+  data() {
     return {
       variables: {
         sideBarWidth: '210px',
@@ -55,8 +62,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/styles/mixin.scss";
-@import "~@/styles/variables.scss";
+@import '~@/styles/mixin.scss';
+@import '~@/styles/variables.scss';
 .layout-container {
   width: 100%;
   height: 100%;
@@ -65,7 +72,8 @@ export default {
     position: relative;
     height: calc(100% - #{$headerHeight});
     width: 100%;
-    .sidebar-container,.main-container {
+    .sidebar-container,
+    .main-container {
       transition: width 0.28s;
     }
     .navbar-container {
@@ -78,7 +86,7 @@ export default {
 }
 </style>
 <style lang="scss">
-@import "~@/styles/variables.scss";
+@import '~@/styles/variables.scss';
 .layout-container {
   .el-header {
     background: #{$headerBg};

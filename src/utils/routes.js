@@ -4,9 +4,9 @@ import path from 'path'
  * @param routes
  * @returns {*[]}
  */
-const getChildrenRoutes = routes => {
+const getChildrenRoutes = (routes) => {
   const result = []
-  routes.forEach(route => {
+  routes.forEach((route) => {
     if (route.children && route.children.length > 0) {
       result.push(...route.children)
     }
@@ -17,10 +17,10 @@ const getChildrenRoutes = routes => {
  * 返回路由菜单
  * @param routes
  */
-export const filterRoutes = routes => {
+export const filterRoutes = (routes) => {
   const childrenRoutes = getChildrenRoutes(routes)
-  return routes.filter(route => {
-    return !childrenRoutes.find(childrenRoutes => {
+  return routes.filter((route) => {
+    return !childrenRoutes.find((childrenRoutes) => {
       return childrenRoutes.path === route.path
     })
   })
@@ -29,7 +29,7 @@ export const filterRoutes = routes => {
 /**
  * 判断数据是否为空值
  */
-function isNull (data) {
+function isNull(data) {
   if (!data) return true
   if (JSON.stringify(data) === '{}') return true
   if (JSON.stringify(data) === '[]') return true
@@ -38,10 +38,10 @@ function isNull (data) {
 /**
  * 根据 routes 数据，返回对应 menu 规则数组
  */
-export function generateMenus (routes, basePath = '') {
+export function generateMenus(routes, basePath = '') {
   const result = []
   // 遍历路由表
-  routes.forEach(item => {
+  routes.forEach((item) => {
     // 不存在 children && 不存在 meta 直接 return
     if (isNull(item.meta) && isNull(item.children)) return
     // 存在 children 不存在 meta，进入迭代
@@ -52,7 +52,7 @@ export function generateMenus (routes, basePath = '') {
     // 合并 path 作为跳转路径
     const routePath = path.resolve(basePath, item.path)
     // 路由分离之后，存在同名父路由的情况，需要单独处理
-    let route = result.find(item => item.path === routePath)
+    let route = result.find((item) => item.path === routePath)
     if (!route) {
       route = {
         ...item,

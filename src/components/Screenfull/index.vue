@@ -1,6 +1,9 @@
 <template>
   <div class="screenFull-container">
-    <svg-icon :icon-class="isFullScreen ? 'exit-fullscreen' : 'fullscreen'" @click="toggleScreen"></svg-icon>
+    <svg-icon
+      :icon-class="isFullScreen ? 'exit-fullscreen' : 'fullscreen'"
+      @click="toggleScreen"
+    ></svg-icon>
   </div>
 </template>
 
@@ -11,22 +14,22 @@ import { Message } from 'element-ui'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Screenfull',
-  data () {
+  data() {
     return {
       // 是否全屏
       isFullScreen: false
     }
   },
-  mounted () {
+  mounted() {
     this.init()
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (screenfull.isEnabled) {
       screenfull.off('change', this.change)
     }
   },
   methods: {
-    toggleScreen () {
+    toggleScreen() {
       // 不支持全屏，提示‘你的浏览器不支持’
       if (!screenfull.isEnabled) {
         Message.error(this.$t('universal.notWork'))
@@ -34,10 +37,10 @@ export default {
       }
       screenfull.toggle()
     },
-    change () {
+    change() {
       this.isFullScreen = screenfull.isFullscreen
     },
-    init () {
+    init() {
       if (screenfull.isEnabled) {
         screenfull.on('change', this.change)
       }

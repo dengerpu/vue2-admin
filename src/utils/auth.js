@@ -8,7 +8,7 @@ const TokenKey = Config.TokenKey
  * 获取token
  * @returns {*}
  */
-export function getToken () {
+export function getToken() {
   return Cookies.get(TokenKey)
 }
 
@@ -18,7 +18,7 @@ export function getToken () {
  * @param rememberMe
  * @returns {*}
  */
-export function setToken (token, rememberMe) {
+export function setToken(token, rememberMe) {
   if (rememberMe) {
     return Cookies.set(TokenKey, token, { expires: Config.tokenCookieExpires })
   } else {
@@ -30,7 +30,7 @@ export function setToken (token, rememberMe) {
  * 移除token
  * @returns {*}
  */
-export function removeToken () {
+export function removeToken() {
   return Cookies.remove(TokenKey)
 }
 
@@ -38,21 +38,21 @@ export function removeToken () {
  * 获取时间戳
  * @returns {string|*}
  */
-export function getItemStamp () {
+export function getItemStamp() {
   return getItem(Config.TIME_STAMP)
 }
 
 /***
  * 设置时间戳
  */
-export function setTimeStamp () {
+export function setTimeStamp() {
   setItem(Config.TIME_STAMP, Date.now())
 }
 
 /**
  * 判断token是否过期
  */
-export function isCheckTimeout () {
+export function isCheckTimeout() {
   // 当前时间戳
   const currentTime = Date.now()
   // 缓存时间戳

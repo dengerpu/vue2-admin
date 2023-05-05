@@ -1,6 +1,10 @@
 <template>
   <div class="navbar-container">
-    <hamburger id="guide-hamburger" @toggleClick="toggleSideBar" class="fl"></hamburger>
+    <hamburger
+      id="guide-hamburger"
+      @toggleClick="toggleSideBar"
+      class="fl"
+    ></hamburger>
     <Breadcrumb id="guide-breadcrumb" class="fl"></Breadcrumb>
   </div>
 </template>
@@ -12,12 +16,8 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Navbar',
   components: { Hamburger, Breadcrumb },
-  props: {},
-  data () {
-    return {}
-  },
   methods: {
-    toggleSideBar () {
+    toggleSideBar() {
       this.$store.dispatch('app/toggleSidebar')
     }
   }
@@ -28,7 +28,7 @@ export default {
 .navbar-container {
   display: flex;
   align-items: center;
-  .hamburger-container{
+  .hamburger-container {
     width: 20px;
     // hover 动画
     transition: background 0.5s;

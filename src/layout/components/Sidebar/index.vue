@@ -1,14 +1,26 @@
 <template>
-  <div class="sidebar" :style="{height: sidebarHeight}">
-    <sidebar-logo :style="{backgroundColor: variables.subMenuHover}" class="has-logo" v-if="hasLogo" :is-menu="true" :collapse="!$store.getters.sidebar.opened"></sidebar-logo>
+  <div class="sidebar" :style="{ height: sidebarHeight }">
+    <sidebar-logo
+      :style="{ backgroundColor: variables.subMenuHover }"
+      class="has-logo"
+      v-if="hasLogo"
+      :is-menu="true"
+      :collapse="!$store.getters.sidebar.opened"
+    ></sidebar-logo>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :collapse="!$store.getters.sidebar.opened"
         :default-active="activeMenu"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
-        :active-text-color="variables.menuActiveText">
-        <SidebarItem v-for="route in routes" :item="route" :key="route.path" :base-path="route.path"></SidebarItem>
+        :active-text-color="variables.menuActiveText"
+      >
+        <SidebarItem
+          v-for="route in routes"
+          :item="route"
+          :key="route.path"
+          :base-path="route.path"
+        ></SidebarItem>
       </el-menu>
     </el-scrollbar>
   </div>
@@ -25,7 +37,7 @@ export default {
   computed: {
     // eslint-disable-next-line vue/return-in-computed-property
     // 获取当前活跃的菜单，实现菜单高亮
-    activeMenu () {
+    activeMenu() {
       const route = this.$route
       const { meta, path } = route
       if (meta.activeMenu) {
@@ -33,11 +45,11 @@ export default {
       }
       return path
     },
-    sidebarHeight () {
+    sidebarHeight() {
       return this.hasLogo ? 'calc(100% - 50px)' : '100%'
     }
   },
-  data () {
+  data() {
     return {
       routes: [],
       hasLogo: true,
@@ -52,10 +64,9 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     this.routes = [...constantRoutes, ...asyncRoutes]
   }
 }
 </script>
-<style lang="scss">
-</style>
+<style lang="scss"></style>

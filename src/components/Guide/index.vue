@@ -1,7 +1,11 @@
 <template>
   <div class="guide-container">
     <el-tooltip :content="this.$t('guide.guideTitle')">
-      <svg-icon class="guide-icon" icon-class="guide2" @click="openGuide"></svg-icon>
+      <svg-icon
+        class="guide-icon"
+        icon-class="guide2"
+        @click="openGuide"
+      ></svg-icon>
     </el-tooltip>
   </div>
 </template>
@@ -16,31 +20,31 @@ export default {
   name: 'Guide',
   components: {},
   props: {},
-  data () {
+  data() {
     return {
       driver: null
     }
   },
   computed: {
-    lang () {
+    lang() {
       return this.$store.getters.language
     }
   },
   watch: {
-    lang () {
+    lang() {
       this.initDriver()
     }
   },
-  mounted () {
+  mounted() {
     this.initDriver()
   },
   methods: {
-    openGuide () {
+    openGuide() {
       this.driver.defineSteps(steps(i18n))
       this.driver.start()
     },
     // 初始胡Driver
-    initDriver () {
+    initDriver() {
       this.driver = new Driver({
         // 禁止点击蒙版关闭
         allowClose: false,

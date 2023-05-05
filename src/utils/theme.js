@@ -7,20 +7,20 @@ import axios from 'axios'
  * 写入新的样式
  * @param elNewStyle
  */
-export const writeNewStyle = elNewStyle => {
+export const writeNewStyle = (elNewStyle) => {
   const style = document.createElement('style')
   style.innerText = elNewStyle
   document.head.appendChild(style)
 }
 
-export const generateNewStyle = async themeColor => {
+export const generateNewStyle = async (themeColor) => {
   // 生成的内容和formulate
   const colors = generateColors(themeColor)
   // 获取element的css样式表
   let cssText = await getOriginalStyle()
 
   // 遍历样式表，在css的原样式中进行全局替换
-  Object.keys(colors).forEach(key => {
+  Object.keys(colors).forEach((key) => {
     cssText = cssText.replace(
       new RegExp('(:|\\s+)' + key, 'g'),
       '$1' + colors[key]
@@ -34,12 +34,12 @@ export const generateNewStyle = async themeColor => {
  * @param themeColor
  * @returns {{colors}}
  */
-export const generateColors = themeColor => {
+export const generateColors = (themeColor) => {
   if (!themeColor) return
   const colors = {
     primary: themeColor
   }
-  Object.keys(formula).forEach(key => {
+  Object.keys(formula).forEach((key) => {
     const value = formula[key].replace(/primary/g, themeColor)
     colors[key] = '#' + rgbHex(color.convert(value))
   })
@@ -51,7 +51,7 @@ export const generateColors = themeColor => {
  * @param data element的所有css
  * @returns {*}
  */
-const getStyleTemplate = data => {
+const getStyleTemplate = (data) => {
   const colorMap = {
     '#3a8ee6': 'shade-1',
     '#409eff': 'primary',
@@ -68,7 +68,7 @@ const getStyleTemplate = data => {
   // 根据默认色值为要替换的色值打上标记
   // 例如从element官网获取到的css文件中某个属性为  button { color: '#409eff', background-color: '#53a8ff' },
   // 经过替换之后全部变为 button { color: 'primary',background-color: 'light-1' }
-  Object.keys(colorMap).forEach(key => {
+  Object.keys(colorMap).forEach((key) => {
     const value = colorMap[key]
     data = data.replace(new RegExp(key, 'ig'), value)
   })

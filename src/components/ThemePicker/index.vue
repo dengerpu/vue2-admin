@@ -6,11 +6,14 @@
       </el-tooltip>
     </div>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item >
+      <el-dropdown-item>
         <span @click="showDialogFun">{{ $t('theme.themeColorChange') }}</span>
       </el-dropdown-item>
     </el-dropdown-menu>
-    <select-color :dialog-visible="showDialog" @closeDialog='closeDialog'></select-color>
+    <select-color
+      :dialog-visible="showDialog"
+      @closeDialog="closeDialog"
+    ></select-color>
   </el-dropdown>
 </template>
 
@@ -28,16 +31,16 @@ export default {
       }
     }
   },
-  data () {
+  data() {
     return {
       showDialog: false
     }
   },
   methods: {
-    closeDialog () {
+    closeDialog() {
       this.showDialog = false
     },
-    showDialogFun () {
+    showDialogFun() {
       this.showDialog = true
     }
   }

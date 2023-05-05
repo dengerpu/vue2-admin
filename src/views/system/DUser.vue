@@ -5,20 +5,24 @@
       <el-table-column prop="username" label="用户名"></el-table-column>
       <el-table-column prop="mobile" label="手机号"></el-table-column>
       <el-table-column label="头像" align="center">
-        <template  v-slot="scope">
+        <template v-slot="scope">
           <el-image class="avatar" :src="scope.row.avatar"></el-image>
         </template>
       </el-table-column>
       <el-table-column label="开始时间" prop="openTime">
         <template #default="{ row }">
-          {{row.openTime | parseTime('{y}-{m}-{d}')}}
+          {{ row.openTime | parseTime('{y}-{m}-{d}') }}
         </template>
       </el-table-column>
       <el-table-column label="角色">
         <template #default="{ row }">
           <div v-if="row.role && row.role.length > 0">
-            <el-tag v-for="(item, index) in row.role" :key="index">
-              {{item.title}}
+            <el-tag
+              class="d-user-el-tag"
+              v-for="(item, index) in row.role"
+              :key="index"
+            >
+              {{ item.title }}
             </el-tag>
           </div>
           <div v-else>
@@ -40,7 +44,8 @@
       :page-sizes="[1, 2, 5, 10]"
       :page-size="page.pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="userData.length">
+      :total="userData.length"
+    >
     </el-pagination>
   </div>
 </template>
@@ -50,7 +55,7 @@ export default {
   name: 'DUserList',
   components: {},
   props: {},
-  data () {
+  data() {
     return {
       page: {
         pageSize: 5, // 每页的大小
@@ -69,7 +74,8 @@ export default {
           openTime: '1433088000000',
           username: 'super-admin',
           mobile: '188xxxx0001',
-          avatar: 'https://wpimg.wallstcn.com/57ed425a-c71e-4201-9428-68760c0537c4.jpg?imageView2/1/w/80/h/80'
+          avatar:
+            'https://wpimg.wallstcn.com/57ed425a-c71e-4201-9428-68760c0537c4.jpg?imageView2/1/w/80/h/80'
         },
         {
           role: [
@@ -83,13 +89,18 @@ export default {
           username: 'admin',
           openTime: '1559318400000',
           mobile: '188xxxx0002',
-          avatar: 'https://wpimg.wallstcn.com/9e2a5d0a-bd5b-457f-ac8e-86554616c87b.jpg?imageView2/1/w/80/h/80'
+          avatar:
+            'https://wpimg.wallstcn.com/9e2a5d0a-bd5b-457f-ac8e-86554616c87b.jpg?imageView2/1/w/80/h/80'
         },
         {
           role: [
             {
               id: '2',
               title: '管理员'
+            },
+            {
+              id: '3',
+              title: '普通用户'
             }
           ],
           _id: '612710a0ec87aa543c9c341e',
@@ -117,10 +128,10 @@ export default {
     }
   },
   methods: {
-    handleSizeChange (newPageSize) {
+    handleSizeChange(newPageSize) {
       this.page.pageSize = newPageSize
     },
-    handleCurrentChange (newCurrentPage) {
+    handleCurrentChange(newCurrentPage) {
       this.page.currentPage = newCurrentPage
     }
   }
@@ -134,6 +145,9 @@ export default {
       width: 60px;
       height: 60px;
       border-radius: 50%;
+    }
+    .d-user-el-tag:nth-child(even) {
+      margin: 0 5px;
     }
   }
   .d-user-pagination {

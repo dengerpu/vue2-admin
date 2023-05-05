@@ -1,18 +1,32 @@
 <template>
-  <div :class="{'show': isShow}" class="header-search-container">
-    <svg-icon class="header-search-icon" icon-class="search" @click.stop="onShowSearchBox"></svg-icon>
+  <div :class="{ show: isShow }" class="header-search-container">
+    <svg-icon
+      class="header-search-icon"
+      icon-class="search"
+      @click.stop="onShowSearchBox"
+    ></svg-icon>
     <!--
       filterable属性：开启搜索
       default-first-option属性：在输入框按下回车，选择第一个匹配项。
       remote-method属性：远程搜索方法
       -->
-    <el-select ref="headerSearchRef" v-model="search" class="header-search-select" remote placeholder="Search"
-               filterable default-first-option :remote-method="querySearch" @change="selectChange">
+    <el-select
+      ref="headerSearchRef"
+      v-model="search"
+      class="header-search-select"
+      remote
+      placeholder="Search"
+      filterable
+      default-first-option
+      :remote-method="querySearch"
+      @change="selectChange"
+    >
       <el-option
         v-for="option in searchOptions"
         :key="option.item.path"
         :label="option.item.title.join(' > ')"
-        :value="option.item">
+        :value="option.item"
+      >
       </el-option>
     </el-select>
   </div>
@@ -28,7 +42,7 @@ export default {
   name: 'HeaderSearch',
   components: {},
   props: {},
-  data () {
+  data() {
     return {
       // 控制输入框是否显示
       isShow: false,
@@ -41,25 +55,25 @@ export default {
     }
   },
   computed: {
-    routes () {
+    routes() {
       return [...constantRoutes, ...asyncRoutes]
     },
-    lang () {
+    lang() {
       return this.$store.getters.language
     }
   },
   watch: {
-    routes () {
+    routes() {
       this.searchData = this.generateSearchData(this.routes)
     },
-    lang () {
+    lang() {
       this.searchData = this.generateSearchData(this.routes)
     },
     /***
      * 监听搜索的所有数据的变化
      * @param list
      */
-    searchData (list) {
+    searchData(list) {
       this.initFuse(list)
     },
     /**
@@ -68,7 +82,7 @@ export default {
      * 如果为false,则需要移除点击事件
      * @param value
      */
-    isShow (value) {
+    isShow(value) {
       if (value) {
         document.body.addEventListener('click', this.closeSearchBox)
       } else {
@@ -76,13 +90,13 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.searchData = this.generateSearchData(this.routes)
   },
   methods: {
     generateTitle,
     // 搜索事件
-    querySearch (query) {
+    querySearch(query) {
       if (query !== '') {
         this.searchOptions = this.fuse.search(query)
       } else {
@@ -92,7 +106,7 @@ export default {
     /**
      * 查询到之后选择搜索结果进行路由跳转
      */
-    selectChange (item) {
+    selectChange(item) {
       this.$router.push(item.path)
       this.search = ''
       this.searchOptions = []
@@ -101,20 +115,20 @@ export default {
       })
     },
     // 显示搜索框
-    onShowSearchBox () {
+    onShowSearchBox() {
       this.isShow = !this.isShow
       if (this.isShow) {
         this.$refs.headerSearchRef && this.$refs.headerSearchRef.focus()
       }
     },
     // 关闭搜索框事件
-    closeSearchBox () {
+    closeSearchBox() {
       this.$refs.headerSearchRef && this.$refs.headerSearchRef.blur()
       this.searchOptions = []
       this.isShow = false
     },
     // 初始化Fuse
-    initFuse (list) {
+    initFuse(list) {
       this.fuse = new Fuse(list, {
         // 是否按优先级进行排序
         shouldSort: true,
@@ -142,10 +156,12 @@ export default {
      * @param prefixTitle 父级标题
      * @returns {*[]}
      */
-    generateSearchData (routes, basePath = '/', prefixTitle = []) {
+    generateSearchData(routes, basePath = '/', prefixTitle = []) {
       let result = []
       for (const item of routes) {
-        if (item.hidden) { continue }
+        if (item.hidden) {
+          continue
+        }
         const data = {
           path: path.resolve(basePath, item.path),
           title: [...prefixTitle]
@@ -163,7 +179,11 @@ export default {
         }
         // 递归遍历子路由
         if (item.children) {
-          const tempData = this.generateSearchData(item.children, data.path, data.title)
+          const tempData = this.generateSearchData(
+            item.children,
+            data.path,
+            data.title
+          )
           if (tempData.length >= 1) {
             result = [...result, ...tempData]
           }
@@ -209,7 +229,8 @@ export default {
       margin-left: 10px;
     }
   }
-  ::v-deep .el-range-editor.is-active, .el-range-editor.is-active:hover,
+  ::v-deep .el-range-editor.is-active,
+  .el-range-editor.is-active:hover,
   ::v-deep .el-select .el-input.is-focus .el-input__inner {
     border-color: #ffffff;
   }

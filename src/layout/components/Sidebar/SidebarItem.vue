@@ -1,7 +1,13 @@
 <template>
   <div v-if="!item.hidden">
     <!--一级菜单-->
-    <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.alwaysShow">
+    <template
+      v-if="
+        hasOneShowingChild(item.children, item) &&
+        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+        !item.alwaysShow
+      "
+    >
       <!--自定义link组件可以实现外部链接跳转和内部链接跳转-->
       <dep-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
@@ -10,17 +16,29 @@
           <!--  <i :class="onlyOneChild.meta.icon"></i>-->
           <!--  <span slot="title">{{ onlyOneChild.meta.title }}</span>-->
           <!--</template>-->
-          <Item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="generateTitle(onlyOneChild.meta.title)"></Item>
+          <Item
+            :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
+            :title="generateTitle(onlyOneChild.meta.title)"
+          ></Item>
         </el-menu-item>
       </dep-link>
     </template>
-     <!--多级菜单-->
+    <!--多级菜单-->
     <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <Item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="generateTitle(item.meta.title)"></Item>
+        <Item
+          v-if="item.meta"
+          :icon="item.meta && item.meta.icon"
+          :title="generateTitle(item.meta.title)"
+        ></Item>
       </template>
       <!--递归调用-->
-      <sidebar-item v-for="child in item.children" :key="child.path" :item="child" :base-path="resolvePath(child.path)"></sidebar-item>
+      <sidebar-item
+        v-for="child in item.children"
+        :key="child.path"
+        :item="child"
+        :base-path="resolvePath(child.path)"
+      ></sidebar-item>
     </el-submenu>
   </div>
 </template>
@@ -44,17 +62,15 @@ export default {
       default: ''
     }
   },
-  data () {
+  data() {
     // 修复问题：https://github.com/PanJiaChen/vue-admin-template/issues/237
     this.onlyOneChild = null
-    return {
-    }
   },
   methods: {
     generateTitle,
     // 判断是否只有一个需要显示的路由
-    hasOneShowingChild (children = [], parent) {
-      const showingChildren = children.filter(item => {
+    hasOneShowingChild(children = [], parent) {
+      const showingChildren = children.filter((item) => {
         if (item.hidden) {
           return false
         } else {
@@ -72,7 +88,7 @@ export default {
       return false
     },
     // 解析path
-    resolvePath (routePath) {
+    resolvePath(routePath) {
       if (isExternal(routePath)) {
         return routePath
       }
@@ -85,6 +101,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

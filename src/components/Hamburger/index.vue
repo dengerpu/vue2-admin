@@ -12,15 +12,17 @@ export default {
   props: {},
   computed: {
     // eslint-disable-next-line vue/return-in-computed-property
-    icon () {
-      return this.$store.getters.sidebar.opened ? 'hamburger-opened' : 'hamburger-closed'
+    icon() {
+      return this.$store.getters.sidebar.opened
+        ? 'hamburger-opened'
+        : 'hamburger-closed'
     }
   },
-  data () {
+  data() {
     return {}
   },
   methods: {
-    toggleClick () {
+    toggleClick() {
       this.$emit('toggleClick')
     }
   }

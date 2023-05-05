@@ -4,7 +4,7 @@ import i18n from '@/lang'
  * @param title
  * @returns {*}
  */
-export function generateTitle (title) {
+export function generateTitle(title) {
   // title可能包含空格，并且首字母是大写
   // title = title.replace(/\s+/g, '')
   // if (validUpperCase(title)) {

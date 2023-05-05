@@ -5,12 +5,12 @@
  * @param {Object} source
  * @returns {Object}
  */
-export function deepClone (source) {
+export function deepClone(source) {
   if (!source && typeof source !== 'object') {
     throw new Error('error arguments', 'deepClone')
   }
   const targetObj = source.constructor === Array ? [] : {}
-  Object.keys(source).forEach(keys => {
+  Object.keys(source).forEach((keys) => {
     if (source[keys] && typeof source[keys] === 'object') {
       targetObj[keys] = deepClone(source[keys])
     } else {
@@ -26,7 +26,7 @@ export function deepClone (source) {
  * @param Format 格式
  * @returns {string|null}
  */
-export function parseTime (time, Format) {
+export function parseTime(time, Format) {
   // 没有传时间返回null
   if (arguments.length === 0 || !time) {
     return null
@@ -37,9 +37,9 @@ export function parseTime (time, Format) {
   if (typeof time === 'object') {
     date = time
   } else {
-    if ((typeof time === 'string')) {
+    if (typeof time === 'string') {
       // 时间戳形式
-      if ((/^[0-9]+$/).test(time)) {
+      if (/^[0-9]+$/.test(time)) {
         time = parseInt(time)
       } else {
         // 全局替换-为/
@@ -47,7 +47,7 @@ export function parseTime (time, Format) {
         time = time.replace(new RegExp(/-/gm), '/')
       }
     }
-    if ((typeof time === 'number') && (time.toString().length === 10)) {
+    if (typeof time === 'number' && time.toString().length === 10) {
       time = time * 1000
     }
     date = new Date(time)
@@ -64,7 +64,9 @@ export function parseTime (time, Format) {
   const timeFormat = format.replace(/{([ymdhisa])+}/g, (result, key) => {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
+    }
     return value.toString().padStart(2, '0')
   })
   return timeFormat
