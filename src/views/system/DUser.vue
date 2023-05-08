@@ -1,5 +1,11 @@
 <template>
   <div class="d-user-container">
+    <el-button @click="handleExportExcel">导出</el-button>
+    <d-export-to-excel
+      :excel-dialog="excelDialog"
+      :excel-data="excelExportData"
+      @closeExcelDialog="closeExcelDialog"
+    ></d-export-to-excel>
     <el-table :data="userData" border class="d-user-el-table">
       <el-table-column type="index" label="#"></el-table-column>
       <el-table-column prop="username" label="用户名"></el-table-column>
@@ -51,9 +57,10 @@
 </template>
 
 <script>
+import DExportToExcel from '@/components/DExportToExcel'
 export default {
   name: 'DUserList',
-  components: {},
+  components: { DExportToExcel },
   props: {},
   data() {
     return {
@@ -124,7 +131,9 @@ export default {
           mobile: '188xxxx0002',
           avatar: 'https://robohash.org/4'
         }
-      ]
+      ],
+      excelDialog: false,
+      excelExportData: []
     }
   },
   methods: {
@@ -133,6 +142,14 @@ export default {
     },
     handleCurrentChange(newCurrentPage) {
       this.page.currentPage = newCurrentPage
+    },
+    closeExcelDialog() {
+      this.excelDialog = false
+    },
+    handleExportExcel() {
+      // 此时应该发送请求获取表格所有数据 （分页查询的只是当前页的数据）
+      this.excelExportData = this.userData
+      this.excelDialog = true
     }
   }
 }

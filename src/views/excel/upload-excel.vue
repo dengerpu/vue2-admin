@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <d-upload-excel :onSuccess="onSuccess"></d-upload-excel>
-    <el-table :data="tableData" border class="d-upload-excel-table">
+  <div class="upload-excel-container">
+    <div class="upload-excel-head">
+      <d-upload-excel :onSuccess="onSuccess" class="fl"></d-upload-excel>
+    </div>
+    <el-table :data="tableData" border class="upload-excel-table">
       <el-table-column
         v-for="item in tableDataHeader"
         :key="item"
@@ -38,7 +40,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.d-upload-excel-table {
-  margin-top: 20px;
+.upload-excel-container {
+  .upload-excel-head {
+    overflow: hidden;
+  }
+  .upload-excel-table {
+    margin-top: 20px;
+  }
 }
 </style>

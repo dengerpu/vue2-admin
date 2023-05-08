@@ -1,6 +1,7 @@
 <template>
   <div class="d-upload-excel-container">
     <div
+      :style="{ width: width, height: height }"
       class="d-upload-excel-box"
       @click="handleUpload"
       @drop.stop.prevent="handleDrop"
@@ -39,6 +40,14 @@ export default {
     onSuccess: {
       type: Function,
       required: false
+    },
+    width: {
+      type: String,
+      default: '300px'
+    },
+    height: {
+      type: String,
+      default: '100px'
     }
   },
   data() {
