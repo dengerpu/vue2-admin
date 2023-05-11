@@ -129,6 +129,16 @@ export const asyncRoutes = [
         component: () => import('@/views/system/DUser'),
         name: 'User',
         meta: { title: 'user', icon: 'el-icon-user-solid', noCache: true }
+      },
+      {
+        path: 'userDetails',
+        component: () => import('@/views/system/DUserDetails'),
+        name: 'userDetails',
+        meta: {
+          title: 'userDetails',
+          icon: 'el-icon-user-solid',
+          noCache: true
+        }
       }
     ]
   },
@@ -213,7 +223,11 @@ export const asyncRoutes = [
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
-        meta: { title: 'editArticle', noCache: true, activeMenu: '/example/list' },
+        meta: {
+          title: 'editArticle',
+          noCache: true,
+          activeMenu: '/example/list'
+        },
         hidden: true
       },
       {
