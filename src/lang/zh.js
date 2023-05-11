@@ -66,7 +66,8 @@ export default {
     profile: '个人中心',
     system: '系统管理',
     user: '用户管理',
-    userDetails: '用户详情'
+    userDetails: '用户详情',
+    roleManager: '角色管理'
   },
   sidebar: {
     menu: '菜单'

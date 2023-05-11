@@ -126,7 +126,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'user',
-        component: () => import('@/views/system/DUser'),
+        component: () => import('@/views/system/DUserManager'),
         name: 'User',
         meta: { title: 'user', icon: 'el-icon-user-solid', noCache: true }
       },
@@ -136,6 +136,16 @@ export const asyncRoutes = [
         name: 'userDetails',
         meta: {
           title: 'userDetails',
+          icon: 'el-icon-user-solid',
+          noCache: true
+        }
+      },
+      {
+        path: 'roleManager',
+        component: () => import('@/views/system/DRoleManager'),
+        name: 'roleManager',
+        meta: {
+          title: 'roleManager',
           icon: 'el-icon-user-solid',
           noCache: true
         }

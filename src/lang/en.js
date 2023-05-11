@@ -67,7 +67,8 @@ export default {
     profile: 'Profile',
     system: 'System',
     user: 'User Manage',
-    userDetails: 'User Details'
+    userDetails: 'User Details',
+    roleManager: 'role Manager'
   },
   sidebar: {
     menu: 'menu'
