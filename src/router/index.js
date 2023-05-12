@@ -149,6 +149,16 @@ export const asyncRoutes = [
           icon: 'el-icon-user-solid',
           noCache: true
         }
+      },
+      {
+        path: 'permissionManager',
+        component: () => import('@/views/system/DPermissionManager'),
+        name: 'permissionManager',
+        meta: {
+          title: 'permissionManager',
+          icon: 'el-icon-user-solid',
+          noCache: true
+        }
       }
     ]
   },

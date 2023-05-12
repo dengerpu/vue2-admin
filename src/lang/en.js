@@ -68,7 +68,8 @@ export default {
     system: 'System',
     user: 'User Manage',
     userDetails: 'User Details',
-    roleManager: 'role Manager'
+    roleManager: 'Role Manager',
+    permissionManager: 'Permission Manager'
   },
   sidebar: {
     menu: 'menu'
