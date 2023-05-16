@@ -68,7 +68,8 @@ export default {
     user: '用户管理',
     userDetails: '用户详情',
     roleManager: '角色管理',
-    permissionManager: '权限管理'
+    permissionManager: '权限管理',
+    menuManager: '菜单管理'
   },
   sidebar: {
     menu: '菜单'

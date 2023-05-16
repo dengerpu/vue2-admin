@@ -69,7 +69,8 @@ export default {
     user: 'User Manage',
     userDetails: 'User Details',
     roleManager: 'Role Manager',
-    permissionManager: 'Permission Manager'
+    permissionManager: 'Permission Manager',
+    menuManager: 'Menu Manager'
   },
   sidebar: {
     menu: 'menu'

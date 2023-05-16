@@ -159,6 +159,16 @@ export const asyncRoutes = [
           icon: 'el-icon-user-solid',
           noCache: true
         }
+      },
+      {
+        path: 'menuManager',
+        component: () => import('@/views/system/DMenuManager'),
+        name: 'menuManager',
+        meta: {
+          title: 'menuManager',
+          icon: 'el-icon-s-grid',
+          noCache: true
+        }
       }
     ]
   },
@@ -203,7 +213,29 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  {
+    path: '/table',
+    component: Layout,
+    redirect: '/table/dynamicTable',
+    alwaysShow: true, // will always show the root menu
+    name: 'Table',
+    meta: {
+      title: 'table',
+      icon: 'el-icon-s-grid',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'dynamicTable',
+        component: () => import('@/views/table/DynamicTable'),
+        name: 'DynamicTable',
+        meta: {
+          title: 'dynamicTable',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }
+    ]
+  },
   {
     path: '/icon',
     component: Layout,
