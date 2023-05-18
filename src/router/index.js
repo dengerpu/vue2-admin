@@ -233,6 +233,15 @@ export const asyncRoutes = [
           title: 'dynamicTable',
           roles: ['admin'] // or you can only set roles in sub nav
         }
+      },
+      {
+        path: 'dragTable',
+        component: () => import('@/views/table/DragTable'),
+        name: 'DragTable',
+        meta: {
+          title: 'dragTable',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
       }
     ]
   },
