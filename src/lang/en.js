@@ -11,7 +11,7 @@ export default {
     directivePermission: 'Directive Permission',
     icons: 'Icons',
     components: 'Components',
-    tinymce: 'Tinymce',
+    editor: 'Editor',
     markdown: 'Markdown',
     jsonEditor: 'JSON Editor',
     dndList: 'Dnd List',
