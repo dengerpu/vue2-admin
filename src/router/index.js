@@ -246,6 +246,38 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/components',
+    component: Layout,
+    redirect: '/components/markdown',
+    alwaysShow: true, // will always show the root menu
+    name: 'Components',
+    meta: {
+      title: 'components',
+      icon: 'el-icon-s-grid',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'markdown',
+        component: () => import('@/views/components-demo/Markdown'),
+        name: 'Markdown',
+        meta: {
+          title: 'markdown',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'editor',
+        component: () => import('@/views/components-demo/Editor'),
+        name: 'Editor',
+        meta: {
+          title: 'editor',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }
+    ]
+  },
+  {
     path: '/icon',
     component: Layout,
     children: [

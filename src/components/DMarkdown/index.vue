@@ -9,7 +9,10 @@ import '@toast-ui/editor/dist/i18n/zh-cn'
 import defaultOptions from './options'
 export default {
   name: 'DMarkdown',
-  components: {},
+  model: {
+    prop: 'htmlStr',
+    event: 'input'
+  },
   props: {
     options: {
       type: Object,
@@ -38,6 +41,12 @@ export default {
       this.Editor.destroy()
       this.initEditor()
       this.Editor.setHTML(htmlStr)
+    },
+    height(newValue) {
+      this.Editor.height(newValue)
+    },
+    mode(newValue) {
+      this.Editor.changeMode(newValue)
     }
   },
   computed: {
