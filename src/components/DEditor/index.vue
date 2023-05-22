@@ -18,6 +18,8 @@
 
 <script>
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { i18nChangeLanguage } from '@wangeditor/editor'
+
 export default {
   name: 'DEditor',
   components: { Editor, Toolbar },
@@ -39,6 +41,17 @@ export default {
       default: 'default' // or 'simple'
     }
   },
+  watch: {
+    language(newValue) {
+      // 遗憾的是，wangEditor5并不支持动态奇热换语言
+      // https://github.com/wangeditor-team/wangEditor/issues/4741
+    }
+  },
+  computed: {
+    language() {
+      return this.$store.getters.language
+    }
+  },
   data() {
     return {
       editor: null,
@@ -49,6 +62,7 @@ export default {
   methods: {
     onCreated(editor) {
       this.editor = Object.seal(editor) // 一定要用 Object.seal() ，否则会报错
+      i18nChangeLanguage(this.language === 'zh' ? 'zh-CN' : 'en')
       this.editor.setHtml(this.htmlStr)
     },
     onChange(editor) {
