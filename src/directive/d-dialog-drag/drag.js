@@ -12,6 +12,19 @@ export default {
       const disX = e.clientX - dialogHeaderEl.offsetLeft
       const disY = e.clientY - dialogHeaderEl.offsetTop
 
+      // 获取当前元素的宽度  offsetWidth(包括border,padding,content)
+      const dragDomWidth = dragDom.offsetWidth
+      const dragDomHeight = dragDom.offsetHeight
+
+      const screenWidth = document.body.clientWidth
+      const screenHeight = document.body.clientHeight
+
+      const minDragDomLeft = dragDom.offsetLeft
+      const maxDragDomLeft = screenWidth - dragDom.offsetLeft - dragDomWidth
+
+      const minDragDomTop = dragDom.offsetTop
+      const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomHeight
+
       // 获取到的值带px 正则匹配替换
       let styL, styT
 
@@ -26,12 +39,25 @@ export default {
 
       document.onmousemove = function (e) {
         // 通过事件委托，计算移动的距离
-        const l = e.clientX - disX
-        const t = e.clientY - disY
+        let left = e.clientX - disX
+        let top = e.clientY - disY
+
+        // 边界处理
+        if (-left > minDragDomLeft) {
+          left = -minDragDomLeft
+        } else if (left > maxDragDomLeft) {
+          left = maxDragDomLeft
+        }
+
+        if (-top > minDragDomTop) {
+          top = -minDragDomTop
+        } else if (top > maxDragDomTop) {
+          top = maxDragDomTop
+        }
 
         // 移动当前元素
-        dragDom.style.left = `${l + styL}px`
-        dragDom.style.top = `${t + styT}px`
+        dragDom.style.left = `${left + styL}px`
+        dragDom.style.top = `${top + styT}px`
 
         // 将此时的位置传出去
         // binding.value({x:e.pageX,y:e.pageY})
