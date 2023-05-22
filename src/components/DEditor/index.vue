@@ -43,7 +43,7 @@ export default {
   },
   watch: {
     language(newValue) {
-      // 遗憾的是，wangEditor5并不支持动态奇热换语言
+      // 遗憾的是，wangEditor5并不支持动态切换语言
       // https://github.com/wangeditor-team/wangEditor/issues/4741
     }
   },
