@@ -54,7 +54,7 @@ import Screenfull from '@/components/Screenfull'
 import HeaderSearch from '@/components/HeaderSearch'
 import Guide from '@/components/Guide'
 export default {
-  name: 'DepHeader',
+  name: 'DHeader',
   components: { Guide, HeaderSearch, Screenfull, ThemePicker, LangSelect },
   props: {},
   data() {

@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout-container">
     <el-header :height="variables.headerHeight">
-      <dep-header></dep-header>
+      <d-header></d-header>
     </el-header>
     <el-container class="app-wrapper">
       <!--左侧菜单-->
@@ -27,23 +27,17 @@
 </template>
 
 <script>
-import Sidebar from './components/Sidebar'
-import Navbar from '@/layout/components/Navbar'
-import AppMain from '@/layout/components/AppMain'
-import DepHeader from '@/layout/components/Header'
-import TagsView from '@/layout/components/TagsView'
-// import variables from '@/styles/variables.scss'
+import { Sidebar, Navbar, AppMain, DHeader, TagsView } from './components'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'layout',
   components: {
-    DepHeader,
+    DHeader,
     AppMain,
     Navbar,
     Sidebar,
     TagsView
   },
-  props: {},
   data() {
     return {
       variables: {
@@ -52,24 +46,16 @@ export default {
         headerHeight: '50px'
       }
     }
-  },
-  computed: {
-    // variables () {
-    //   return variables
-    // }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/styles/mixin.scss';
 @import '~@/styles/variables.scss';
 .layout-container {
   width: 100%;
   height: 100%;
   .app-wrapper {
-    @include clearfix;
-    position: relative;
     height: calc(100% - #{$headerHeight});
     width: 100%;
     .sidebar-container,
