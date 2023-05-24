@@ -3,7 +3,7 @@
     <el-dialog
       :title="title"
       :visible="visible"
-      width="30%"
+      width="width"
       @close="closeEvent"
       v-drag
     >
@@ -46,6 +46,10 @@ export default {
     },
     closeEvent: {
       type: Function
+    },
+    width: {
+      type: String,
+      default: '30%'
     }
   },
   data() {
