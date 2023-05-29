@@ -9,28 +9,28 @@
       "
     >
       <!--自定义link组件可以实现外部链接跳转和内部链接跳转-->
-      <dep-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+      <d-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
           <!--这样就可以渲染菜单，为什么要写一个Item组件呢？为了实现icon可以用element-icon,也可以用外部引入的-->
           <!--<template slot="title">-->
           <!--  <i :class="onlyOneChild.meta.icon"></i>-->
           <!--  <span slot="title">{{ onlyOneChild.meta.title }}</span>-->
           <!--</template>-->
-          <Item
+          <IconItem
             :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
             :title="generateTitle(onlyOneChild.meta.title)"
-          ></Item>
+          ></IconItem>
         </el-menu-item>
-      </dep-link>
+      </d-link>
     </template>
     <!--多级菜单-->
     <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <Item
+        <IconItem
           v-if="item.meta"
           :icon="item.meta && item.meta.icon"
           :title="generateTitle(item.meta.title)"
-        ></Item>
+        ></IconItem>
       </template>
       <!--递归调用-->
       <sidebar-item
@@ -47,11 +47,11 @@
 import path from 'path'
 import { isExternal } from '@/utils/validate'
 import { generateTitle } from '@/utils/i18n'
-import depLink from './Link'
-import Item from '@/layout/components/Sidebar/Item'
+import DLink from './Link'
+import IconItem from '@/components/IconItem'
 export default {
   name: 'SidebarItem',
-  components: { Item, depLink },
+  components: { IconItem, DLink },
   props: {
     item: {
       type: Object,
