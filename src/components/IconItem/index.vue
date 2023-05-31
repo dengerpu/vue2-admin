@@ -21,14 +21,18 @@ export default {
     if (icon) {
       // 如果菜单图标是element-ui自带的，采用i标签渲染
       if (icon.includes('el-icon')) {
-        vNodes.push(<i class={[icon, 'sub-el-icon']} />)
+        vNodes.push(<i class={[icon, 'sub-el-icon', 'icon-class']} />)
       } else {
         // 如果是svg图标，采用自定义组件来展示
-        vNodes.push(<svg-icon icon-class={icon} />)
+        vNodes.push(<svg-icon icon-class={icon} class="icon-class" />)
       }
     }
     if (title) {
-      vNodes.push(<span slot="title">{title}</span>)
+      vNodes.push(
+        <span slot="title" class="icon-title">
+          {title}
+        </span>
+      )
     }
     return vNodes
   }
