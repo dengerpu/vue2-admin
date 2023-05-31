@@ -4,7 +4,6 @@
       :data="permissions"
       border
       row-key="id"
-      default-expand-all
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
       <el-table-column prop="permissionName" label="权限名称"></el-table-column>
@@ -32,7 +31,15 @@ export default {
               id: '1-1',
               permissionName: '分配角色',
               permissionMark: 'distributeRole',
-              permissionDesc: '为员工分配角色'
+              permissionDesc: '为员工分配角色',
+              children: [
+                {
+                  id: '1-1-1',
+                  permissionName: '新增',
+                  permissionMark: 'add',
+                  permissionDesc: '新增按钮'
+                }
+              ]
             },
             {
               id: '1-2',
