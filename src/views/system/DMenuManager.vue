@@ -2,17 +2,20 @@
   <div class="d-menu-manager-container">
     <el-button @click="dialogVisible = true">点击打开</el-button>
     <d-dialog
-      :visible="dialogVisible"
+      v-model="dialogVisible"
       :close-event="closeDialog"
-      :save-event="saveDialog"
       title="新增菜单"
       width="50%"
+      :data-source="{
+        type: 'add',
+        table: { name: 'sys_menu', data: menuForm }
+      }"
     >
       <d-form :model="menuForm" label-width="100px" inline :cols="2">
         <d-form-item label="菜单类型">
           <el-radio-group
             size="mini"
-            v-model="menuForm.type"
+            v-model="menuForm.menu_type"
             style="margin-bottom: 30px"
           >
             <el-radio-button label="dir">目录</el-radio-button>
@@ -20,8 +23,8 @@
             <el-radio-button label="button">按钮</el-radio-button>
           </el-radio-group>
         </d-form-item>
-        <d-form-item label="菜单显示">
-          <el-switch v-model="menuForm.show"> </el-switch>
+        <d-form-item label="菜单隐藏">
+          <el-switch v-model="menuForm.hidden"> </el-switch>
         </d-form-item>
         <d-form-item label="菜单图标">
           <el-popover
@@ -41,6 +44,7 @@
             size="mini"
             readonly
             v-model="menuForm.icon"
+            clearable
             v-popover:popover
           >
             <IconItem
@@ -52,20 +56,43 @@
           </el-input>
         </d-form-item>
         <d-form-item label="外链菜单">
-          <el-switch v-model="menuForm.externalLink"> </el-switch>
+          <el-switch v-model="menuForm.i_frame"> </el-switch>
         </d-form-item>
         <d-form-item label="上级菜单">
-          <el-input size="mini"></el-input>
+          <el-select
+            size="mini"
+            style="width: 100%"
+            v-model="select"
+            placeholder="请选择"
+          >
+            <el-option label="餐厅名" value="1"></el-option>
+            <el-option label="订单号" value="2"></el-option>
+            <el-option label="用户电话" value="3"></el-option>
+          </el-select>
+          <!--<el-input size="mini">-->
+          <!-- -->
+          <!--</el-input>-->
         </d-form-item>
         <d-form-item label="菜单名称">
-          <el-input size="mini"></el-input>
+          <el-input size="mini" v-model="menuForm.title"></el-input>
         </d-form-item>
         <d-form-item label="菜单路径">
-          <el-input size="mini"></el-input>
+          <el-input
+            size="mini"
+            v-model="menuForm.path"
+            placeholder="例如: /dashboard/index"
+          ></el-input>
+        </d-form-item>
+        <d-form-item label="菜单页面">
+          <el-input
+            size="mini"
+            v-model="menuForm.name"
+            placeholder="例如: views/dashboard/index"
+          ></el-input>
         </d-form-item>
         <d-form-item label="菜单排序">
           <el-input-number
-            v-model="menuForm.order"
+            v-model="menuForm.menu_sort"
             :min="0"
             :max="100"
             label="排序"
@@ -91,16 +118,24 @@ export default {
     return {
       dialogVisible: false,
       menuForm: {
-        type: 'dir',
-        show: true,
+        menu_type: 'dir',
+        hidden: 0,
         icon: '',
-        externalLink: false,
-        order: 0
-      }
+        i_frame: 0,
+        menu_sort: 0
+      },
+      select: ''
     }
   },
   methods: {
     closeDialog() {
+      this.menuForm = {
+        menu_type: 'dir',
+        hidden: 0,
+        icon: '',
+        i_frame: 0,
+        menu_sort: 0
+      }
       this.dialogVisible = false
     },
     saveDialog() {
@@ -108,7 +143,6 @@ export default {
       // this.dialogVisible = false
     },
     selectedIcon(icon) {
-      console.log(icon)
       this.menuForm.icon = icon
     }
   }

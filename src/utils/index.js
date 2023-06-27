@@ -71,3 +71,35 @@ export function parseTime(time, Format) {
   })
   return timeFormat
 }
+
+/**
+ * 将对象中所有的Boolean值转换为0和1
+ * @param obj
+ * @returns {*}
+ */
+export function convertBooleanToNumber(obj) {
+  if (typeof obj !== 'object' || obj === null) {
+    // 基本类型，直接返回
+    return obj
+  }
+
+  if (Array.isArray(obj)) {
+    // 如果是数组，对数组中的每个元素进行递归处理
+    return obj.map(convertBooleanToNumber)
+  }
+
+  // 遍历对象的属性
+  for (const key in obj) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (obj.hasOwnProperty(key)) {
+      if (typeof obj[key] === 'boolean') {
+        // 如果属性是布尔值，则转换为数字
+        obj[key] = obj[key] ? 1 : 0
+      } else {
+        // 如果属性是对象，则递归处理
+        obj[key] = convertBooleanToNumber(obj[key])
+      }
+    }
+  }
+  return obj
+}

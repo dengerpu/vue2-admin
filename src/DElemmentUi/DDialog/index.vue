@@ -13,7 +13,7 @@
           type="primary"
           icon="el-icon-success"
           size="mini"
-          @click="saveEvent"
+          @click="defaultSaveEvent"
         >
           确 定
         </el-button>
@@ -27,10 +27,17 @@
 
 <script>
 import drag from '@/directive/d-dialog-drag'
+import { save } from '@/api/common'
+import { convertBooleanToNumber } from '@/utils/index'
+
 export default {
   name: 'DDialog',
   directives: {
     drag
+  },
+  model: {
+    prop: 'visible',
+    event: 'input'
   },
   props: {
     title: {
@@ -50,14 +57,34 @@ export default {
     width: {
       type: String,
       default: '30%'
+    },
+    dataSource: {
+      type: Object
+    }
+  },
+  computed: {
+    defaultSaveEvent() {
+      if (typeof this.saveEvent === 'function') {
+        return this.saveEvent
+      } else {
+        return this.originalSaveEvent
+      }
     }
   },
   data() {
-    return {
-      dialogVisible: true
-    }
+    return {}
   },
-  methods: {}
+  methods: {
+    originalSaveEvent() {
+      const data = convertBooleanToNumber(this.dataSource)
+      console.log(data)
+      save(data).then((res) => {
+        console.log(res)
+      })
+      // 关闭弹框
+      this.$emit('input', false)
+    }
+  }
 }
 </script>
 
