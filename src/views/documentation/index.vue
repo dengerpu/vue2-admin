@@ -1,22 +1,23 @@
 <template>
   <div>
-    documentation
+    <d-select :value="value"></d-select>
   </div>
 </template>
 
 <script>
+import DSelect from '@/DElemmentUi/DSelect'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Documentation',
-  components: {},
+  components: { DSelect },
   props: {},
-  data () {
-    return {}
+  data() {
+    return {
+      value: ''
+    }
   },
   methods: {}
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
