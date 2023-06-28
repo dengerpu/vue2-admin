@@ -77,7 +77,6 @@ export default {
   methods: {
     originalSaveEvent() {
       const data = convertBooleanToNumber(this.dataSource)
-      console.log(data)
       save(data).then((res) => {
         console.log(res)
       })

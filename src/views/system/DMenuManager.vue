@@ -6,6 +6,7 @@
       :close-event="closeDialog"
       title="新增菜单"
       width="50%"
+      :save-event="saveDialog"
       :data-source="{
         type: 'add',
         table: { name: 'sys_menu', data: menuForm }
@@ -59,19 +60,12 @@
           <el-switch v-model="menuForm.i_frame"> </el-switch>
         </d-form-item>
         <d-form-item label="上级菜单">
-          <el-select
-            size="mini"
-            style="width: 100%"
-            v-model="select"
-            placeholder="请选择"
-          >
-            <el-option label="餐厅名" value="1"></el-option>
-            <el-option label="订单号" value="2"></el-option>
-            <el-option label="用户电话" value="3"></el-option>
-          </el-select>
-          <!--<el-input size="mini">-->
-          <!-- -->
-          <!--</el-input>-->
+          <d-select
+            :data-source="{
+              table: { name: 'sys_menu', fields: 'id value, title label' }
+            }"
+            v-model="menuForm.pid"
+          ></d-select>
         </d-form-item>
         <d-form-item label="菜单名称">
           <el-input size="mini" v-model="menuForm.title"></el-input>
@@ -110,9 +104,10 @@ import DForm from '@/DElemmentUi/DForm'
 import DFormItem from '@/DElemmentUi/DFormItem'
 import DIconSelect from '@/DElemmentUi/DIconSelect'
 import IconItem from '@/components/IconItem'
+import DSelect from '@/DElemmentUi/DSelect'
 export default {
   name: 'DMenuManager',
-  components: { IconItem, DIconSelect, DFormItem, DForm, DDialog },
+  components: { IconItem, DIconSelect, DFormItem, DForm, DDialog, DSelect },
   props: {},
   data() {
     return {
@@ -122,7 +117,8 @@ export default {
         hidden: 0,
         icon: '',
         i_frame: 0,
-        menu_sort: 0
+        menu_sort: 0,
+        pid: 0
       },
       select: ''
     }
