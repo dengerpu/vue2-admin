@@ -38,13 +38,16 @@ export default {
       type: [String, Boolean, Number],
       require: true
     },
+    // 搜索方法
     queryMethod: {
       type: Function
     },
+    // 数据源，如果不指定需要自己传递options，或者传递queryMethod搜索方法，把options传递过来
     dataSource: {
       type: Object,
       required: false
     },
+    // 结果
     options: {
       type: Array
     },
