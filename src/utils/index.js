@@ -103,3 +103,31 @@ export function convertBooleanToNumber(obj) {
   }
   return obj
 }
+
+/***
+ * 将数组转化为树形数组
+ * @param data
+ * @param id
+ * @param pid
+ */
+export function convertDataToTreeData(data) {
+  const map = {}
+  const tree = []
+  data.forEach((item) => {
+    map[item.id] = { ...item }
+  })
+  data.forEach((item) => {
+    if (item.pid && item.pid !== null) {
+      const parent = map[item.pid]
+      if (parent) {
+        if (!parent.children) {
+          parent.children = []
+        }
+        parent.children.push(map[item.id])
+      }
+    } else {
+      tree.push(map[item.id])
+    }
+  })
+  return tree
+}

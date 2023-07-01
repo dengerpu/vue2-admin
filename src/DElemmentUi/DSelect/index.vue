@@ -2,22 +2,35 @@
   <div class="d-select-container" style="width: 100%">
     <el-select
       v-model="value"
-      filterable
+      :filterable="filterable"
       :clearable="clearable"
       :remote-method="querySearch"
       :loading="loading"
       @change="getSelect"
-      size="mini"
+      :size="size"
       style="width: 100%"
+      v-if="!isTree"
     >
       <el-option
-        v-for="item in searchOptions"
+        v-for="item in defaultOptions"
         :key="item.value"
         :label="item.label"
         :value="item.value"
       >
       </el-option>
     </el-select>
+    <el-cascader
+      style="width: 100%"
+      v-else
+      v-model="value"
+      :options="defaultOptions"
+      :props="{ checkStrictly: true }"
+      :size="size"
+      :clearable="clearable"
+      :filterable="filterable"
+      @change="getSelect"
+    >
+    </el-cascader>
   </div>
 </template>
 
@@ -25,6 +38,7 @@
 import { query } from '@/api/common'
 import { Message } from 'element-ui'
 import Fuse from 'fuse.js'
+import { convertDataToTreeData } from '@/utils'
 
 export default {
   name: 'DSelect',
@@ -55,6 +69,21 @@ export default {
     clearable: {
       type: Boolean,
       default: true
+    },
+    // 是否是树形
+    isTree: {
+      type: Boolean,
+      default: false
+    },
+    // 是否远程搜索
+    filterable: {
+      type: Boolean,
+      default: true
+    },
+    // 尺寸
+    size: {
+      type: String,
+      default: 'mini'
     }
   },
   computed: {
@@ -69,8 +98,12 @@ export default {
         return this.originalQueryMethod
       }
     },
+    /***
+     * 默认options
+     * @returns {[]|*[]}
+     */
     defaultOptions() {
-      if (this.options !== null) {
+      if (this.options && this.options !== null) {
         return this.options
       } else {
         return this.searchOptions
@@ -101,7 +134,11 @@ export default {
       query(this.dataSource).then((res) => {
         this.loading = false
         if (res?.code === 200) {
-          this.searchOptions = res.data.rows
+          if (this.isTree) {
+            this.searchOptions = convertDataToTreeData(res.data.rows)
+          } else {
+            this.searchOptions = res.data.rows
+          }
         } else {
           Message.error(res.message)
         }
@@ -140,7 +177,11 @@ export default {
       })
     },
     getSelect() {
-      this.$emit('input', this.value)
+      if (typeof this.value === 'object') {
+        this.$emit('input', this.value[this.value.length - 1])
+      } else {
+        this.$emit('input', this.value)
+      }
     }
   }
 }

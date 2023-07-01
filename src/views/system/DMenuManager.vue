@@ -62,8 +62,12 @@
         <d-form-item label="上级菜单">
           <d-select
             :data-source="{
-              table: { name: 'sys_menu', fields: 'id value, title label' }
+              table: {
+                name: 'sys_menu',
+                fields: 'id, id value, title label,pid'
+              }
             }"
+            is-tree
             v-model="menuForm.pid"
           ></d-select>
         </d-form-item>
@@ -118,9 +122,38 @@ export default {
         icon: '',
         i_frame: 0,
         menu_sort: 0,
-        pid: 0
+        pid: ''
       },
       select: ''
+      // options: [
+      //   {
+      //     id: 118,
+      //     label: '测试111',
+      //     value: 118,
+      //     children: [
+      //       {
+      //         pid: 118,
+      //         id: 119,
+      //         label: '测试2222',
+      //         value: 119,
+      //         children: [
+      //           {
+      //             pid: 119,
+      //             id: 120,
+      //             label: '首页',
+      //             value: 120
+      //           }
+      //         ]
+      //       },
+      //       {
+      //         pid: 118,
+      //         id: 121,
+      //         label: '文档',
+      //         value: 121
+      //       }
+      //     ]
+      //   }
+      // ]
     }
   },
   methods: {
@@ -130,7 +163,8 @@ export default {
         hidden: 0,
         icon: '',
         i_frame: 0,
-        menu_sort: 0
+        menu_sort: 0,
+        pid: ''
       }
       this.dialogVisible = false
     },
@@ -140,6 +174,9 @@ export default {
     },
     selectedIcon(icon) {
       this.menuForm.icon = icon
+    },
+    queryMethod() {
+      console.log('自定义方法执行')
     }
   }
 }
