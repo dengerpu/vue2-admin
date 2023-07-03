@@ -24,7 +24,7 @@
       v-else
       v-model="value"
       :options="defaultOptions"
-      :props="{ checkStrictly: true }"
+      :props="{ checkStrictly: expand }"
       :size="size"
       :clearable="clearable"
       :filterable="filterable"
@@ -84,6 +84,11 @@ export default {
     size: {
       type: String,
       default: 'mini'
+    },
+    // 可以选任意一项(树形才有效)
+    expand: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

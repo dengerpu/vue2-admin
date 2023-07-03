@@ -7,6 +7,7 @@
       title="新增菜单"
       width="50%"
       :save-event="saveDialog"
+      destroy-on-close
       :data-source="{
         type: 'add',
         table: { name: 'sys_menu', data: menuForm }
@@ -68,6 +69,7 @@
               }
             }"
             is-tree
+            expand
             v-model="menuForm.pid"
           ></d-select>
         </d-form-item>
@@ -125,46 +127,13 @@ export default {
         pid: ''
       },
       select: ''
-      // options: [
-      //   {
-      //     id: 118,
-      //     label: '测试111',
-      //     value: 118,
-      //     children: [
-      //       {
-      //         pid: 118,
-      //         id: 119,
-      //         label: '测试2222',
-      //         value: 119,
-      //         children: [
-      //           {
-      //             pid: 119,
-      //             id: 120,
-      //             label: '首页',
-      //             value: 120
-      //           }
-      //         ]
-      //       },
-      //       {
-      //         pid: 118,
-      //         id: 121,
-      //         label: '文档',
-      //         value: 121
-      //       }
-      //     ]
-      //   }
-      // ]
     }
   },
   methods: {
     closeDialog() {
       this.menuForm = {
         menu_type: 'dir',
-        hidden: 0,
-        icon: '',
-        i_frame: 0,
-        menu_sort: 0,
-        pid: ''
+        icon: ''
       }
       this.dialogVisible = false
     },
