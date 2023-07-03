@@ -1,0 +1,90 @@
+<template>
+  <div class="d-table-container">
+    <el-table :data="defaultTableData">
+      <el-table-column type="index" width="50" label="序号"> </el-table-column>
+      <template v-if="dataProps && dataProps.length > 0">
+        <el-table-column
+          v-for="item in dataProps"
+          :prop="item.value"
+          :label="item.label"
+          :key="item.label"
+        >
+        </el-table-column>
+      </template>
+      <slot></slot>
+    </el-table>
+  </div>
+</template>
+
+<script>
+import { query } from '@/api/common'
+import { Message } from 'element-ui'
+
+export default {
+  name: 'DTable',
+  components: {},
+  props: {
+    // 查找表格数据方法(不是必传，如果不传，则使用dataSource作为查询条件来查询)
+    queryMethod: {
+      type: Function
+    },
+    // 数据源，如果不指定需要自己传递data，或者传递queryMethod查找方法，并且把tableData传递过来
+    dataSource: {
+      type: Object,
+      required: false
+    },
+    // 表格数据
+    tableData: {
+      type: Array
+    },
+    dataProps: {
+      type: Array
+    }
+  },
+  computed: {
+    /**
+     * 表格数据
+     * @returns {[]|*[]}
+     */
+    defaultTableData() {
+      if (this.tableData && this.tableData != null) {
+        return this.tableData
+      } else {
+        return this.queryTableData
+      }
+    },
+    /***
+     * 表格数据查询方法
+     */
+    defaultQueryTableData() {
+      if (typeof this.queryMethod === 'function') {
+        return this.queryMethod
+      } else {
+        return this.originalQueryDataMethod
+      }
+    }
+  },
+  data() {
+    return {
+      queryTableData: []
+    }
+  },
+  mounted() {
+    this.defaultQueryTableData()
+  },
+  methods: {
+    originalQueryDataMethod() {
+      query(this.dataSource).then((res) => {
+        if (res?.code === 200) {
+          this.queryTableData = res.data.rows
+          console.log(this.queryTableData)
+        } else {
+          Message.error(res.message)
+        }
+      })
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped></style>

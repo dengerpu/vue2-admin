@@ -1,12 +1,38 @@
 <template>
   <div class="d-menu-manager-container">
     <el-button @click="dialogVisible = true">点击打开</el-button>
+    <d-table
+      :data-source="{
+        table: {
+          name: 'sys_menu',
+          fields: '*'
+        }
+      }"
+      :dataProps="[
+        {
+          label: '菜单类型',
+          value: 'menu_type'
+        },
+        {
+          label: '菜单名称',
+          value: 'name'
+        },
+        {
+          label: '组件名称',
+          value: 'component'
+        }
+      ]"
+    >
+      <!--<el-table-column prop="date" label="日期" width="180"> </el-table-column>-->
+      <!--<el-table-column prop="name" label="姓名" width="180"> </el-table-column>-->
+      <!--<el-table-column prop="address" label="地址"> </el-table-column>-->
+    </d-table>
+    <!--新增菜单弹窗-->
     <d-dialog
       v-model="dialogVisible"
       :close-event="closeDialog"
       title="新增菜单"
       width="50%"
-      :save-event="saveDialog"
       destroy-on-close
       :data-source="{
         type: 'add',
@@ -74,7 +100,7 @@
           ></d-select>
         </d-form-item>
         <d-form-item label="菜单名称">
-          <el-input size="mini" v-model="menuForm.title"></el-input>
+          <el-input size="mini" v-model="menuForm.name"></el-input>
         </d-form-item>
         <d-form-item label="菜单路径">
           <el-input
@@ -86,7 +112,7 @@
         <d-form-item label="菜单页面">
           <el-input
             size="mini"
-            v-model="menuForm.name"
+            v-model="menuForm.component"
             placeholder="例如: views/dashboard/index"
           ></el-input>
         </d-form-item>
@@ -111,9 +137,18 @@ import DFormItem from '@/DElemmentUi/DFormItem'
 import DIconSelect from '@/DElemmentUi/DIconSelect'
 import IconItem from '@/components/IconItem'
 import DSelect from '@/DElemmentUi/DSelect'
+import DTable from '@/DElemmentUi/DTable'
 export default {
   name: 'DMenuManager',
-  components: { IconItem, DIconSelect, DFormItem, DForm, DDialog, DSelect },
+  components: {
+    DTable,
+    IconItem,
+    DIconSelect,
+    DFormItem,
+    DForm,
+    DDialog,
+    DSelect
+  },
   props: {},
   data() {
     return {
@@ -126,7 +161,29 @@ export default {
         menu_sort: 0,
         pid: ''
       },
-      select: ''
+      select: '',
+      tableData: [
+        {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
+        {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        },
+        {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        },
+        {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }
+      ]
     }
   },
   methods: {
