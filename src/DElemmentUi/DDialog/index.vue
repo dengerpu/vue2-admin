@@ -5,6 +5,7 @@
       :visible="visible"
       width="width"
       @close="closeEvent"
+      :destroy-on-close="destroyOnClose"
       v-drag
     >
       <slot></slot>
@@ -60,6 +61,10 @@ export default {
     },
     dataSource: {
       type: Object
+    },
+    destroyOnClose: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
