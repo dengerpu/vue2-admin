@@ -1,6 +1,26 @@
 <template>
   <div class="d-table-container">
-    <el-table :data="defaultTableData">
+    <div class="d-table-options-container">
+      <el-button type="primary" :size="size" icon="el-icon-plus"
+        >新增</el-button
+      >
+      <el-button type="success" :size="size" icon="el-icon-edit"
+        >修改</el-button
+      >
+      <el-button type="danger" :size="size" icon="el-icon-delete"
+        >删除</el-button
+      >
+      <el-button type="warning" :size="size" icon="el-icon-download"
+        >导出</el-button
+      >
+    </div>
+    <el-table
+      :data="defaultTableData"
+      :stripe="stripe"
+      :highlight-current-row="isRadio"
+      :size="size"
+      @current-change="handleCurrentChange"
+    >
       <el-table-column type="index" width="50" label="序号"> </el-table-column>
       <template v-if="dataProps && dataProps.length > 0">
         <el-table-column
@@ -15,6 +35,14 @@
         </el-table-column>
       </template>
       <slot></slot>
+      <el-table-column fixed="right" label="操作" width="100">
+        <template v-slot="scope">
+          <el-button @click="handleClick(scope.row)" type="text" size="small"
+            >查看</el-button
+          >
+          <el-button type="text" size="small">编辑</el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -40,8 +68,24 @@ export default {
     tableData: {
       type: Array
     },
+    // 表格字段对应关系
     dataProps: {
       type: Array
+    },
+    // 表格以及按钮大小
+    size: {
+      type: String,
+      default: 'mini'
+    },
+    // 隔行变色
+    stripe: {
+      type: Boolean,
+      default: true
+    },
+    // 是否是单选
+    isRadio: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -76,6 +120,7 @@ export default {
     this.defaultQueryTableData()
   },
   methods: {
+    // 默认查询方法
     originalQueryDataMethod() {
       query(this.dataSource).then((res) => {
         if (res?.code === 200) {
@@ -85,6 +130,9 @@ export default {
           Message.error(res.message)
         }
       })
+    },
+    handleCurrentChange(currentRow, oldCurrentRow, index) {
+      console.log(currentRow, oldCurrentRow, index)
     }
   }
 }
