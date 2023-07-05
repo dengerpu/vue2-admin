@@ -11,7 +11,12 @@
       :dataProps="[
         {
           label: '菜单类型',
-          value: 'menu_type'
+          value: 'menu_type',
+          dic: {
+            dir: '目录',
+            menu: '菜单',
+            button: '按钮'
+          }
         },
         {
           label: '菜单名称',
@@ -161,29 +166,7 @@ export default {
         menu_sort: 0,
         pid: ''
       },
-      select: '',
-      tableData: [
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },
-        {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        },
-        {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        },
-        {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }
-      ]
+      select: ''
     }
   },
   methods: {

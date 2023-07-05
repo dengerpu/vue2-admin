@@ -9,6 +9,9 @@
           :label="item.label"
           :key="item.label"
         >
+          <template v-slot="scope" v-if="item.dic">
+            {{ item.dic[scope.row[item.value]] }}
+          </template>
         </el-table-column>
       </template>
       <slot></slot>
