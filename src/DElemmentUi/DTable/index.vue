@@ -181,6 +181,12 @@ export default {
       } else {
         return this.originalQueryDataMethod
       }
+    },
+    __dataSource__() {
+      const source = this.dataSource
+      source.table.page = this.page.currentPage
+      source.table.size = this.page.pageSize
+      return source
     }
   },
   data() {
@@ -203,7 +209,7 @@ export default {
   methods: {
     // 默认查询方法
     originalQueryDataMethod() {
-      query(this.dataSource).then((res) => {
+      query(this.__dataSource__).then((res) => {
         if (res?.code === 200) {
           this.queryTableData = res.data.rows
           this.total = res.data.count
@@ -218,9 +224,11 @@ export default {
     },
     handleSizeChange(val) {
       this.page.pageSize = val
+      this.defaultQueryTableData()
     },
     handlePageCurrentChange(val) {
       this.page.currentPage = val
+      this.defaultQueryTableData()
     }
   }
 }
