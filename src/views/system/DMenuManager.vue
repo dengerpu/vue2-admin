@@ -23,6 +23,11 @@
           value: 'name'
         },
         {
+          label: '图标',
+          value: 'icon',
+          icon: true
+        },
+        {
           label: '组件名称',
           value: 'component'
         }

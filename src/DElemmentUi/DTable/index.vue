@@ -77,8 +77,13 @@
           :label="item.label"
           :key="item.label"
         >
-          <template v-slot="scope" v-if="item.dic">
-            {{ item.dic[scope.row[item.value]] }}
+          <template v-slot="scope" v-if="item.dic || item.icon">
+            <template v-if="item.dic">
+              {{ item.dic[scope.row[item.value]] }}
+            </template>
+            <template v-else-if="item.icon">
+              <icon-item :icon="scope.row[item.value]"></icon-item>
+            </template>
           </template>
         </el-table-column>
       </template>
@@ -117,10 +122,11 @@
 <script>
 import { query } from '@/api/common'
 import { Message } from 'element-ui'
+import IconItem from '@/components/IconItem'
 const position = ['left', 'center', 'right']
 export default {
   name: 'DTable',
-  components: {},
+  components: { IconItem },
   props: {
     // 查找表格数据方法(不是必传，如果不传，则使用dataSource作为查询条件来查询)
     queryMethod: {
