@@ -69,6 +69,11 @@
       :size="size"
       @current-change="handleTableCurrentChange"
     >
+      <el-table-column
+        v-if="multiple"
+        type="selection"
+        width="55"
+      ></el-table-column>
       <el-table-column type="index" width="50" label="序号"> </el-table-column>
       <template v-if="dataProps && dataProps.length > 0">
         <el-table-column
@@ -77,12 +82,17 @@
           :label="item.label"
           :key="item.label"
         >
-          <template v-slot="scope" v-if="item.dic || item.icon">
+          <template v-slot="scope" v-if="item.dic || item.icon || item.extra">
             <template v-if="item.dic">
               {{ item.dic[scope.row[item.value]] }}
             </template>
             <template v-else-if="item.icon">
               <icon-item :icon="scope.row[item.value]"></icon-item>
+            </template>
+            <template v-else-if="item.extra">
+              <div
+                v-html="templateExtra(item.extra, scope.row, item.value)"
+              ></div>
             </template>
           </template>
         </el-table-column>
@@ -155,10 +165,10 @@ export default {
       type: Boolean,
       default: true
     },
-    // 是否是单选
-    isRadio: {
+    // 是否是多选
+    multiple: {
       type: Boolean,
-      default: true
+      default: false
     },
     pagePosition: {
       type: String,
@@ -210,6 +220,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.dataProps)
     this.defaultQueryTableData()
   },
   methods: {
@@ -235,6 +246,13 @@ export default {
     handlePageCurrentChange(val) {
       this.page.currentPage = val
       this.defaultQueryTableData()
+    },
+    // 处理附加的额外信息
+    templateExtra(obj, data, key) {
+      const _var = obj.variable
+      let html = obj.html
+      html = html.replaceAll(_var, data[key])
+      return html
     }
   }
 }

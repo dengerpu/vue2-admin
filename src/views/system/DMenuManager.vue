@@ -30,6 +30,34 @@
         {
           label: '组件名称',
           value: 'component'
+        },
+        {
+          label: '排序',
+          value: 'menu_sort'
+        },
+        {
+          label: '是否外链',
+          value: 'i_frame',
+          dic: {
+            '0': '否',
+            '1': '是'
+          }
+        },
+        {
+          label: '是否缓存',
+          value: 'cache',
+          dic: {
+            '0': '否',
+            '1': '是'
+          }
+        },
+        {
+          label: '是否隐藏',
+          value: 'hidden',
+          dic: {
+            '0': '否',
+            '1': '是'
+          }
         }
       ]"
       page-position="left"
@@ -177,6 +205,12 @@ export default {
         pid: ''
       },
       select: ''
+      // extra: {
+      //   html: '<icon-item :icon="scope.row[item.value]">scope.row[item.value]</icon-item>',
+      //   variable: 'scope.row[item.value]'
+      // }
+      // extra: '<span style="color: red">传递过去的额外信息</span>'
+      // extra: '<i class="el-icon-eleme"></i>'
     }
   },
   methods: {
