@@ -274,6 +274,15 @@ export const asyncRoutes = [
           title: 'editor',
           roles: ['admin'] // or you can only set roles in sub nav
         }
+      },
+      {
+        path: 'monaco-editor',
+        component: () => import('@/views/components-demo/MonacoEditor'),
+        name: 'MonacoEditor',
+        meta: {
+          title: 'MonacoEditor',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
       }
     ]
   },

@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings')
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 // @vue/cli-service 提供的 defineConfig 帮手函数，以获得更好的类型提示
 const { defineConfig } = require('@vue/cli-service')
 
@@ -33,7 +34,7 @@ module.exports = defineConfig({
         '@': resolve('src')
       }
     },
-    plugins: [new NodePolyfillPlugin()]
+    plugins: [new NodePolyfillPlugin(), new MonacoWebpackPlugin()]
   },
   chainWebpack(config) {
     config.module.rule('svg').exclude.add(resolve('src/icons')).end()
